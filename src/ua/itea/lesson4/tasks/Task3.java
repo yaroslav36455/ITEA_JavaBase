@@ -4,18 +4,20 @@ import java.util.Scanner;
 
 public class Task3 {
 	public static void main(String[] args) {
-		int arraySize = 0;
+		int arraySize;
 		Scanner scanner = new Scanner(System.in);
 
 		/* Guess array size */
 		System.out.print("Введите желаемый размер массива: ");
-		while (!scanner.hasNextInt() || (arraySize = scanner.nextInt()) < 0) {
-			if (arraySize < 0) {
-				arraySize = 0;
+		while (true) {
+			if (scanner.hasNextInt()) {
+				arraySize = scanner.nextInt();
+				if (arraySize >= 0)
+					break;
 			} else {
 				scanner.next();
 			}
-
+			
 			System.out.println("Вы должны ввести неотрицательное число!");
 			System.out.print("Введите ещё раз: ");
 		}
@@ -24,15 +26,17 @@ public class Task3 {
 		int[] array = new int[arraySize];
 
 		/* Fill array */
-		System.out.println("Теперь заполните массив элементами.");
-		for (int i = 0; i < array.length; i++) {
-			System.out.print("Элемент № " + (i + 1) + ": ");
-			while (!scanner.hasNextInt()) {
-				scanner.next();
-				System.out.println("Вы должны ввести число!");
-				System.out.print("Введите ещё раз: ");
+		if (arraySize > 0) {
+			System.out.println("Теперь заполните массив элементами.");
+			for (int i = 0; i < array.length; i++) {
+				System.out.print("Элемент № " + (i + 1) + ": ");
+				while (!scanner.hasNextInt()) {
+					scanner.next();
+					System.out.println("Вы должны ввести число!");
+					System.out.print("Введите ещё раз: ");
+				}
+				array[i] = scanner.nextInt();
 			}
-			array[i] = scanner.nextInt();
 		}
 		scanner.close();
 
