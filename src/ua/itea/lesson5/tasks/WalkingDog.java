@@ -6,37 +6,45 @@ import java.util.Scanner;
 public class WalkingDog {
 
 	public static void main(String[] args) throws InterruptedException {
-		boolean isGameOver = false;
-		boolean isQuit = false;
 		Scanner scanner = new Scanner(System.in);
 		
-		char[] field = new char[10];
+		/* Game state */
+		boolean isGameOver = false;
+		boolean isQuit = false;
 		int dogPos = 0;
-		char floor = '_';
-		char dog   = '@';
 		
+		/* Buttons */
 		char buttonPressed;
 		char leftButton  = 'a';
 		char rightButton = 'd';
 		char quitButton  = 'q';
 		
+		/* Game field */
+		char[] field = new char[10];
+		char floor = '_';
+		char dog   = '@';
 		Arrays.fill(field, floor);
+		
+		/* Print info */
 		System.out.println("Control:");
 		System.out.println(" left  - '" + leftButton  + "';");
 		System.out.println(" right - '" + rightButton + "';");
 		System.out.println(" quit  - '" + quitButton  + "'.");
+		System.out.println("-------------");
 		
 		while(!isQuit) {
 			
-			/* Draw */
+			/* Update */
 			field[dogPos] = dog;
+			
+			/* Draw */
 			System.out.print("\r[");
 			for (int i = 0; i < field.length; i++) {
 				System.out.print(field[i]);
 			}
 			System.out.print("]");
 			
-			/* Request next direction */
+			/* Request pressing */
 			System.out.print(" | Press: ");
 			buttonPressed = scanner.next().charAt(0);
 			
