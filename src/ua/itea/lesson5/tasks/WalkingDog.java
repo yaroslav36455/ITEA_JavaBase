@@ -12,6 +12,8 @@ public class WalkingDog {
 		boolean isGameOver = false;
 		boolean isQuit = false;
 		int dogPos = 0;
+		int health = 100;
+		int stepPayment = -5;
 		
 		/* Buttons */
 		char buttonPressed;
@@ -38,14 +40,14 @@ public class WalkingDog {
 			field[dogPos] = dog;
 			
 			/* Draw */
-			System.out.print("\r[");
+			System.out.print("[");
 			for (int i = 0; i < field.length; i++) {
 				System.out.print(field[i]);
 			}
-			System.out.print("]");
+			System.out.print("] | health: " + health);
 			
 			/* Request pressing */
-			System.out.print(" | Press: ");
+			System.out.print(" | press: ");
 			buttonPressed = scanner.next().charAt(0);
 			
 			/* Handle key press */
@@ -53,20 +55,24 @@ public class WalkingDog {
 				isQuit = true;
 			} else if (buttonPressed == leftButton) {
 				field[dogPos--] = floor;
+				health += stepPayment;
 			} else if (buttonPressed == rightButton) {
 				field[dogPos++] = floor;
+				health += stepPayment;
 			}
 			
 			/* is Game Over */
-			if (dogPos < 0 || dogPos >= field.length) {
+			if ((dogPos < 0 || dogPos >= field.length) || health < 1) {
 				isGameOver = true;
 				isQuit = true;
 			}	
 		}
 		
 		scanner.close();
-		if (isGameOver)
+		if (isGameOver) {
+			System.out.println("Health: " + health);
 			System.out.println("Game Over");
+		}
 		System.out.println("Quit");
 	}
 
