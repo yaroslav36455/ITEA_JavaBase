@@ -18,6 +18,8 @@ public class WalkingDog {
 		while (aidPos == bombPos) {
 			aidPos = (int) (Math.random() * 9) + 1;
 		}
+		boolean isSteppedOnBomb = false;
+		boolean isSteppedOnAid  = false;
 		
 		/* Step constants */
 		int STEP_PAYMENT = -5;
@@ -74,12 +76,12 @@ public class WalkingDog {
 			
 			/* Health update */
 			health += STEP_PAYMENT;
-			if (dogPos == bombPos) {
+			if (!isSteppedOnBomb && (dogPos == bombPos)) {
 				health += STEP_ON_BOMB_PAYMENT;
-				bombPos = -1;
-			} else if (dogPos == aidPos) {
+				isSteppedOnBomb = true;
+			} else if (!isSteppedOnAid && (dogPos == aidPos)) {
 				health += STEP_ON_AID_PAYMENT;
-				aidPos = -1;
+				isSteppedOnAid = true;
 			}
 			
 			/* is Game Over */
