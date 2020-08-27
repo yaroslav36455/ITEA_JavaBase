@@ -43,6 +43,7 @@ public class WalkingDog {
 		System.out.println(" left  - '" + leftButton  + "';");
 		System.out.println(" right - '" + rightButton + "';");
 		System.out.println(" quit  - '" + quitButton  + "'.");
+		System.out.println("(any other presses are ignored)");
 		System.out.println("-------------");
 		
 		/* Items */
@@ -72,13 +73,16 @@ public class WalkingDog {
 			System.out.print(" | press: ");
 			buttonPressed = scanner.next().charAt(0);
 			
-			/* Handle key press */
-			if (buttonPressed == quitButton) {
-				isQuit = true;
-			} else if (buttonPressed == leftButton) {
+			/* Handle key press */ 
+			if (buttonPressed == leftButton) {
 				field[dogPos--] = floor;
 			} else if (buttonPressed == rightButton) {
 				field[dogPos++] = floor;
+			} else {
+				if (buttonPressed == quitButton) {
+					isQuit = true;
+				}
+				continue;
 			}
 			
 			/* Health update */
