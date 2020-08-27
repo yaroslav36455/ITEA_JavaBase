@@ -15,21 +15,22 @@ public class TaskFirst {
 		
 		/* Negative money is not allowed */
 		double money = 455.85;
-		double discount;
+		int discount;
   
 		/* Sort by money */
 		if (money >= 500) {
-			discount = 0.07;
+			discount = 7;
 		} else if (money >= 400) {
-			discount = 0.05;
+			discount = 5;
 		} else if (money >= 300) {
-			discount = 0.03;
+			discount = 3;
 		} else {
-			discount = 0.0;
+			discount = 0;
 		}
 		
-		System.out.printf("Ваша скидка %.2f%%, "
+		System.out.printf("Ваша скидка %d%%, "
 				           + "и того к оплате %.2f с учётом скидки.",
-				           discount, money * (1. - discount));
+				           discount,
+				           money * (1. - discount / 100.));
 	}
 }
