@@ -8,16 +8,22 @@ public class WalkingDog {
 	public static void main(String[] args) throws InterruptedException {
 		Scanner scanner = new Scanner(System.in);
 		
+		/* Game field */
+		char[] field = new char[10];
+		
 		/* Game state */
 		boolean isGameOver = false;
 		boolean isQuit = false;
 		int health = 100;
 		int dogPos = 0;
-		int bombPos = (int) (Math.random() * 9) + 1;
-		int aidPos  = bombPos;
-		while (aidPos == bombPos) {
-			aidPos = (int) (Math.random() * 9) + 1;
-		}
+		int bombPos;
+		do {
+			bombPos = (int) (Math.random() * field.length);
+		} while(bombPos == dogPos);
+		int aidPos;
+		do {
+			aidPos = (int) (Math.random() * field.length);
+		} while(aidPos == dogPos || aidPos == bombPos);
 		boolean isSteppedOnBomb = false;
 		boolean isSteppedOnAid  = false;
 		
@@ -39,12 +45,13 @@ public class WalkingDog {
 		System.out.println(" quit  - '" + quitButton  + "'.");
 		System.out.println("-------------");
 		
-		/* Game field */
-		char[] field = new char[10];
+		/* Items */
 		char floor = '_';
 		char dog   = '@';
 		char bomb  = '*';
 		char aid   = '+';
+		
+		/* Initialize field */
 		Arrays.fill(field, floor);
 		field[bombPos] = bomb;
 		field[aidPos]  = aid;
