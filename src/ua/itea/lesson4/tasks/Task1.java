@@ -1,5 +1,7 @@
 package ua.itea.lesson4.tasks;
 
+import java.util.Arrays;
+
 public class Task1 {
 	public static void main(String[] args) {
 		int size = 10;
@@ -31,20 +33,8 @@ public class Task1 {
 
 		/* Output */
 		System.out.println("Number of iterations: " + counter);
-		
-		for (int i = 0; i < arrayByte.length; i++) {
-			System.out.print(arrayByte[i] + " ");
-		}
-		System.out.println();
-
-		for (int i = 0; i < arrayShort.length; i++) {
-			System.out.print(arrayShort[i] + " ");
-		}
-		System.out.println();
-
-		for (int i = 0; i < arrayInt.length; i++) {
-			System.out.print(arrayInt[i] + " ");
-		}
-		System.out.println();
+		System.out.println(Arrays.toString(arrayByte));
+		System.out.println(Arrays.toString(arrayShort));
+		System.out.println(Arrays.toString(arrayInt));
 	}
 }

@@ -1,5 +1,6 @@
 package ua.itea.lesson4.tasks;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Task3 {
@@ -42,11 +43,7 @@ public class Task3 {
 
 		/* Output */
 		System.out.print("Массив [" + arraySize + "]: ");
-		System.out.print("{ ");
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + ((i < array.length - 1) ? ", " : ""));
-		}
-		System.out.println(" }");
+		System.out.println(Arrays.toString(array));
 	}
 
 }

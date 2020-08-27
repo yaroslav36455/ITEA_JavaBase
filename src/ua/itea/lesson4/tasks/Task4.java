@@ -1,5 +1,7 @@
 package ua.itea.lesson4.tasks;
 
+import java.util.Arrays;
+
 public class Task4 {
 	public static void main(String[] args) {
 		/* Randomize array length */
@@ -19,9 +21,6 @@ public class Task4 {
 		}
 
 		/* Output */
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-		System.out.println();
+		System.out.println(Arrays.toString(array));
 	}
 }

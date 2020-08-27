@@ -1,5 +1,7 @@
 package ua.itea.lesson4.tasks;
 
+import java.util.Arrays;
+
 public class Task5 {
 	public static void main(String[] args) {
 		int[] months = new int[12];
@@ -7,8 +9,6 @@ public class Task5 {
 			months[m - 1] = (m >> 3) == (m & 1) ? (m == 2 ? 28 : 30) : 31;
 
 		/* Output */
-		for (int i = 0; i < months.length; i++)
-			System.out.print(months[i] + " ");
-		System.out.println();
+		System.out.println(Arrays.toString(months));
 	}
 }
