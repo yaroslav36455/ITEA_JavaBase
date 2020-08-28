@@ -33,21 +33,16 @@ Scanner scanner = new Scanner(System.in);
 		char bomb  = '*';
 		char aid   = '+';
 		
-		/* Buttons */
+		/* Button */
 		char buttonPressed;
-		final char BUTTON_LEFT  = 'a';
-		final char BUTTON_RIGHT = 'd';
-		final char BUTTON_UP    = 'w';
-		final char BUTTON_DOWN  = 's';
-		final char BUTTON_QUIT  = 'q';
 		
 		/* Print info */
 		System.out.println("Control:");
-		System.out.println(" left  - '" + BUTTON_LEFT  + '\'');
-		System.out.println(" right - '" + BUTTON_RIGHT + '\'');
-		System.out.println(" up    - '" + BUTTON_UP    + '\'');
-		System.out.println(" down  - '" + BUTTON_DOWN  + '\'');
-		System.out.println(" quit  - '" + BUTTON_QUIT  + '\'');
+		System.out.println(" left  - '" + 'a' + '\'');
+		System.out.println(" right - '" + 'd' + '\'');
+		System.out.println(" up    - '" + 'w' + '\'');
+		System.out.println(" down  - '" + 's' + '\'');
+		System.out.println(" quit  - '" + 'q' + '\'');
 		System.out.println("(any other presses are ignored)");
 		
 		/* Fill field */
@@ -104,23 +99,23 @@ Scanner scanner = new Scanner(System.in);
 			
 			/* Handle key press */
 			switch (buttonPressed) {
-			case BUTTON_LEFT:
+			case 'a':
 				field[dogPosRow][dogPosCol--] = floor;
 				break;
 				
-			case BUTTON_RIGHT:
+			case 'd':
 				field[dogPosRow][dogPosCol++] = floor;
 				break;
 				
-			case BUTTON_UP:
+			case 'w':
 				field[dogPosRow--][dogPosCol] = floor;
 				break;
 				
-			case BUTTON_DOWN:
+			case 's':
 				field[dogPosRow++][dogPosCol] = floor;
 				break;
 				
-			case BUTTON_QUIT:
+			case 'q':
 				isQuit = true;
 				/* falls through */
 			default:
