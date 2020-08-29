@@ -53,10 +53,16 @@ public class Task2 {
 						for (int w = 0; w < words.length; w++) {
 							String word = words[w].toLowerCase();
 							String name = people[person][part].toLowerCase();
+							int deltaLength = people[person][part].length() - words[w].length();
 							
-							if (name.contains(word.subSequence(0, words[w].length()))) {
-								found[person] = people[person];
-								isFound = true;
+							/* Find word in name */
+							for (int letter = 0; letter <= deltaLength; letter++) {
+								String subname = name.substring(letter, letter + words[w].length());
+								if (subname.equals(word)) {
+									found[person] = people[person];
+									isFound = true;
+									break;
+								}
 							}
 						}
 					}
