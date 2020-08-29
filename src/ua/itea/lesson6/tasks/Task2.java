@@ -14,14 +14,15 @@ public class Task2 {
 				           + "first name and patronymic, "
 				           + "separating them with whitespace.");
 		
+		String regexp = "[a-zA-Zа-яА-Я]+";
 		for (int personIter = 0; personIter < people.length; personIter++) {
 			System.out.println("Person №" + (personIter + 1));
 			
 			Scanner lineScanner = new Scanner(scanner.nextLine());
 			
 			for (int nameIter = 0; nameIter < people[personIter].length; nameIter++) {
-				if(lineScanner.hasNext("[a-zA-Zа-яА-Я]+")) {
-					people[personIter][nameIter] = lineScanner.next("[a-zA-Zа-яА-Я]+");
+				if(lineScanner.hasNext(regexp)) {
+					people[personIter][nameIter] = lineScanner.next(regexp);
 				} else {
 					System.out.println("Invalid input, try again.");
 					personIter--;
