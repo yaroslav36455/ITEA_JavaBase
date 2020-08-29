@@ -32,9 +32,10 @@ public class Task2 {
 		}
 		
 		/* Main loop */
+		boolean isQuit = false;
 		System.out.println("----------------------------");
 		System.out.println("Enter an empty line to quit.");
-		while (true) {
+		while (!isQuit) {
 			String[][] found  = new String[people.length][];
 			
 			/* Request */
@@ -42,39 +43,40 @@ public class Task2 {
 			System.out.print("Find:");
 			String[] words = scanner.nextLine().trim().split("[ \t]+");
 			if (words[0].isEmpty()) {
-				break;
-			}
-			
-			/* Find */
-			boolean isFound = false;
-			for (int person = 0; person < people.length; person++) {
-				for (int part = 0; part < people[person].length; part++) {
-					for (int w = 0; w < words.length; w++) {
-						String word = words[w].toLowerCase();
-						String name = people[person][part].toLowerCase();
-						
-						if (name.contains(word.subSequence(0, words[w].length()))) {
-							found[person] = people[person];
-							isFound = true;
+				isQuit = true;
+			} else {
+				
+				/* Find */
+				boolean isFound = false;
+				for (int person = 0; person < people.length; person++) {
+					for (int part = 0; part < people[person].length; part++) {
+						for (int w = 0; w < words.length; w++) {
+							String word = words[w].toLowerCase();
+							String name = people[person][part].toLowerCase();
+							
+							if (name.contains(word.subSequence(0, words[w].length()))) {
+								found[person] = people[person];
+								isFound = true;
+							}
 						}
 					}
 				}
-			}
-			
-			/* Print */
-			if (isFound) {
-				for (int i = 0; i < found.length; i++) {
-					if (found[i] != null) {
-						isFound = true;
-						System.out.print("Found: ");
-						for (int j = 0; j < found[i].length; j++) {
-							System.out.print(found[i][j] + ((j < found[i].length - 1) ? " " : ""));
+				
+				/* Print */
+				if (isFound) {
+					for (int i = 0; i < found.length; i++) {
+						if (found[i] != null) {
+							isFound = true;
+							System.out.print("Found: ");
+							for (int j = 0; j < found[i].length; j++) {
+								System.out.print(found[i][j] + ((j < found[i].length - 1) ? " " : ""));
+							}
+							System.out.println();
 						}
-						System.out.println();
-					}
+					}	
+				} else {
+					System.out.println("Nobody found.");
 				}	
-			} else {
-				System.out.println("Nobody found.");
 			}
 		}
 		
