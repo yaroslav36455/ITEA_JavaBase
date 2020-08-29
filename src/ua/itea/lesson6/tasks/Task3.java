@@ -115,6 +115,32 @@ public class Task3 {
 		
 		System.out.println("Consonants in the first line : " + firstLineConsonantsCount);
 		System.out.println("Consonants in the second line: " + secondLineConsonantsCount);
+		
+		System.out.println("---------------------------------");
+		
+		if (firstLineLength > secondLineLength) {
+			System.out.println("The first line is longer.");
+		} else if (firstLineLength < secondLineLength) {
+			System.out.println("The second line is longer.");
+		} else {
+			System.out.println("Both lines have the same length.");
+		}
+		
+		if (firstLineWordCount > secondLineWordCount) {
+			System.out.println("The first line has more words.");
+		} else if (firstLineWordCount < secondLineWordCount) {
+			System.out.println("The second line has more words.");
+		} else {
+			System.out.println("Both lines have the same word count.");
+		}
+		
+		if (firstLineConsonantsCount > secondLineConsonantsCount) {
+			System.out.println("The first line has more consonants.");
+		} else if (firstLineConsonantsCount < secondLineConsonantsCount) {
+			System.out.println("The second line has more consonants.");
+		} else {
+			System.out.println("Both lines have the same consonants count.");
+		}
 	}
 
 }
