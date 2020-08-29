@@ -14,21 +14,30 @@ public class Task2 {
 				           + "first name and patronymic, "
 				           + "separating them with whitespace.");
 		
-		for (int i = 0; i < people.length; i++) {
-			System.out.println("Person №" + (i + 1));
+		for (int personIter = 0; personIter < people.length; personIter++) {
+			System.out.println("Person №" + (personIter + 1));
 			
 			Scanner lineScanner = new Scanner(scanner.nextLine());
 			
-			for (int j = 0; j < people[i].length; j++) {
+			for (int nameIter = 0; nameIter < people[personIter].length; nameIter++) {
 				if(lineScanner.hasNext("[a-zA-Zа-яА-Я]+")) {
-					people[i][j] = lineScanner.next("[a-zA-Zа-яА-Я]+");
+					people[personIter][nameIter] = lineScanner.next("[a-zA-Zа-яА-Я]+");
 				} else {
 					System.out.println("Invalid input, try again.");
-					i--;
+					personIter--;
 					break;
 				}
 			}
 			lineScanner.close();
+		}
+		
+		/* Make lower case copy */
+		String[][] lowerCasePeople = new String[people.length][];
+		for (int personIter = 0; personIter < people.length; personIter++) {
+			lowerCasePeople[personIter] = new String[people[personIter].length];
+			for (int nameIter = 0; nameIter < people[personIter].length; nameIter++) {
+				lowerCasePeople[personIter][nameIter] = people[personIter][nameIter].toLowerCase();
+			}
 		}
 		
 		/* Main loop */
@@ -41,25 +50,25 @@ public class Task2 {
 			/* Request */
 			System.out.println("----------------------------");
 			System.out.print("Find:");
-			String[] words = scanner.nextLine().trim().split("[ \t]+");
-			if (words[0].isEmpty()) {
+			String[] lowerCaseWords = scanner.nextLine().toLowerCase().trim().split("[ \t]+");
+			if (lowerCaseWords[0].isEmpty()) {
 				isQuit = true;
 			} else {
 				
 				/* Find */
 				boolean isFound = false;
-				for (int person = 0; person < people.length; person++) {
-					for (int part = 0; part < people[person].length; part++) {
-						for (int w = 0; w < words.length; w++) {
-							String word = words[w].toLowerCase();
-							String name = people[person][part].toLowerCase();
-							int deltaLength = people[person][part].length() - words[w].length();
+				for (int personIter = 0; personIter < lowerCasePeople.length; personIter++) {
+					for (int nameIter = 0; nameIter < lowerCasePeople[personIter].length; nameIter++) {
+						for (int wordIter = 0; wordIter < lowerCaseWords.length; wordIter++) {
+							String word = lowerCaseWords[wordIter];
+							String name = lowerCasePeople[personIter][nameIter];
+							int deltaLength = name.length() - word.length();
 							
 							/* Find word in name */
 							for (int letter = 0; letter <= deltaLength; letter++) {
-								String subname = name.substring(letter, letter + words[w].length());
+								String subname = name.substring(letter, letter + word.length());
 								if (subname.equals(word)) {
-									found[person] = people[person];
+									found[personIter] = people[personIter];
 									isFound = true;
 									break;
 								}
