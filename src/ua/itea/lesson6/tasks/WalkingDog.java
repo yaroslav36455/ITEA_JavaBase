@@ -9,7 +9,9 @@ public class WalkingDog {
 		Scanner scanner = new Scanner(System.in);
 		
 		/* Game field */
-		char[][] field = new char[10][10];
+		int height = 10;
+		int width  = 10;
+		char[][] field = new char[height][width];
 		
 		/* Game state */
 		boolean isGameOver = false;
@@ -17,10 +19,10 @@ public class WalkingDog {
 		int health = 100;
 		int dogPosRow = 0;
 		int dogPosCol = 0;
-		int[] bombPos = new int [field.length];
-		int[] aidPos  = new int [field.length];
-		boolean[] isSteppedOnBomb = new boolean[field[0].length]; // only rectangular field allowed!
-		boolean[] isSteppedOnAid  = new boolean[field[0].length]; // only rectangular field allowed!
+		int[] bombPos = new int[height];
+		int[] aidPos  = new int[height];
+		boolean[] isSteppedOnBomb = new boolean[width];
+		boolean[] isSteppedOnAid  = new boolean[width];
 		
 		/* Step constants */
 		int STEP_PAYMENT = -5;
@@ -46,19 +48,19 @@ public class WalkingDog {
 		System.out.println("(any other presses are ignored)");
 		
 		/* Fill field */
-		for (int i = 0; i < bombPos.length; i++) {
+		for (int i = 0; i < height; i++) {
 			do {
-				bombPos[i] = (int) (Math.random() * field[i].length);
+				bombPos[i] = (int) (Math.random() * width);
 			} while((dogPosRow == i) && (dogPosCol == bombPos[i]));	
 		}
-		for (int i = 0; i < aidPos.length; i++) {
+		for (int i = 0; i < height; i++) {
 			do {
-				aidPos[i] = (int) (Math.random() * field[i].length);
+				aidPos[i] = (int) (Math.random() * width);
 			} while(((dogPosRow == i) && (dogPosCol == aidPos[i])) || (aidPos[i] == bombPos[i]));	
 		}
 		
 		/* Initialize field */
-		for (int i = 0; i < field.length; i++) {
+		for (int i = 0; i < height; i++) {
 			Arrays.fill(field[i], floor);
 			field[i][bombPos[i]] = bomb;
 			field[i][aidPos[i]]  = aid;	
@@ -70,25 +72,25 @@ public class WalkingDog {
 			field[dogPosRow][dogPosCol] = dog;
 			
 			/* Draw */
-			for (int i = 0; i < field[0].length + 2; i++) {
+			for (int i = 0; i < width + 2; i++) {
 				System.out.print('━');	
 			}
 			System.out.println();
 			System.out.println("health: " + health);
 			System.out.print('┌');
-			for (int i = 0; i < field[0].length; i++) {
+			for (int i = 0; i < width; i++) {
 				System.out.print('─');
 			}
 			System.out.println('┐');
-			for (int row = 0; row < field.length; row++) {
+			for (int row = 0; row < height; row++) {
 				System.out.print("│");
-				for (int col = 0; col < field[row].length; col++) {
+				for (int col = 0; col < width; col++) {
 					System.out.print(field[row][col]);
 				}	
 				System.out.println("│");
 			}
 			System.out.print('└');
-			for (int i = 0; i < field[0].length; i++) {
+			for (int i = 0; i < width; i++) {
 				System.out.print('─');
 			}
 			System.out.println('┘');
@@ -123,8 +125,8 @@ public class WalkingDog {
 			}
 			
 			/* is Game Over: out of field*/
-			if ((dogPosRow < 0 || dogPosRow >= field.length)
-					|| (dogPosCol < 0 || dogPosCol >= field[dogPosRow].length)) {
+			if ((dogPosRow < 0 || dogPosRow >= height)
+					|| (dogPosCol < 0 || dogPosCol >= width)) {
 				isGameOver = true;
 				isQuit = true;
 				continue;
