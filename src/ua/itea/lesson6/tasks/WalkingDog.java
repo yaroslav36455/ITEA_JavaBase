@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class WalkingDog {
 
 	public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		
 		/* Game field */
 		char[][] field = new char[10][10];
