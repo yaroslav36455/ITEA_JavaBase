@@ -10,9 +10,9 @@ public class Task2 {
 		
 		/* Print info */
 		System.out.println("Add " + people.length + " persons: "
-						   + "enter the last name, "
-				           + "first name and patronymic, "
-				           + "separating them with whitespace.");
+		                   + "enter the last name, "
+		                   + "first name and patronymic, "
+		                   + "separating them with whitespace.");
 		
 		/* Create table */
 		{
