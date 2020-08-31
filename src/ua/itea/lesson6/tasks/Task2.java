@@ -8,28 +8,35 @@ public class Task2 {
 		Scanner scanner = new Scanner(System.in);
 		String[][] people = new String[3][3];
 		
-		/* Create table */
+		/* Print info */
 		System.out.println("Add " + people.length + " persons: "
 						   + "enter the last name, "
 				           + "first name and patronymic, "
 				           + "separating them with whitespace.");
 		
-		String regexp = "[a-zA-Zа-яА-Я]+";
-		for (int personIter = 0; personIter < people.length; personIter++) {
-			System.out.println("Person №" + (personIter + 1));
-			
-			Scanner lineScanner = new Scanner(scanner.nextLine());
-			
-			for (int nameIter = 0; nameIter < people[personIter].length; nameIter++) {
-				if(lineScanner.hasNext(regexp)) {
+		/* Create table */
+		{
+			String regexp = "[a-zA-Zа-яА-Я]+";
+			int personIter = 0;
+			while (personIter < people.length) {
+				System.out.println("Person №" + (personIter + 1));
+				
+				Scanner lineScanner = new Scanner(scanner.nextLine());
+				
+				int nameIter = 0;
+				while (nameIter < people[personIter].length && lineScanner.hasNext(regexp)) {
 					people[personIter][nameIter] = lineScanner.next(regexp);
-				} else {
-					System.out.println("Invalid input, try again.");
-					personIter--;
-					break;
+					nameIter++;
 				}
-			}
-			lineScanner.close();
+				
+				if (lineScanner.hasNext(regexp) || nameIter < people[personIter].length) {
+					System.out.println("Invalid input, try again.");
+				} else {
+					personIter++;
+				}
+				
+				lineScanner.close();
+			}	
 		}
 		
 		/* Make lower case copy */
