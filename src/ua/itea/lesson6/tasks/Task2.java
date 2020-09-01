@@ -65,6 +65,7 @@ public class Task2 {
 				
 				/* Find */
 				boolean isFound = false;
+				nextPerson:
 				for (int personIter = 0; personIter < lowerCasePeople.length; personIter++) {
 					for (int nameIter = 0; nameIter < lowerCasePeople[personIter].length; nameIter++) {
 						for (int wordIter = 0; wordIter < lowerCaseWords.length; wordIter++) {
@@ -78,7 +79,7 @@ public class Task2 {
 								if (subname.equals(word)) {
 									found[personIter] = people[personIter];
 									isFound = true;
-									break;
+									continue nextPerson;
 								}
 							}
 						}
