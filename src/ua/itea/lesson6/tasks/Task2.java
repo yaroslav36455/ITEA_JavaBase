@@ -58,7 +58,7 @@ public class Task2 {
 			/* Request */
 			System.out.println("----------------------------");
 			System.out.print("Find:");
-			String[] lowerCaseWords = scanner.nextLine().toLowerCase().trim().split("[\s]+");
+			String[] lowerCaseWords = scanner.nextLine().toLowerCase().trim().split("[\\s]+");
 			if (lowerCaseWords[0].isEmpty()) {
 				isQuit = true;
 			} else {
