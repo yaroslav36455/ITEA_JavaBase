@@ -7,15 +7,11 @@ public class Circle {
 	private String color = "<none>";
 
 	public void printInfo() {
-		System.out.printf("Figure: %s; Perimeter: %.3f; Area: %.3f; Color: %s\n",
+		System.out.printf("Figure: %s; Perimeter: %.3e; Area: %.3e; Color: %s\n",
 						  name, perim, area, color);
 	}
 	
-	public void setDiameter(double diameter) {
-		setRadius(diameter / 2.0);
-	}
-	
-	public void setRadius(double radius) {
+	public void set(double radius) {
 		computePerimeter(radius);
 		computeArea(radius);
 		updateColor();

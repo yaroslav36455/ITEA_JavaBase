@@ -1,6 +1,6 @@
 package ua.itea.lesson8.tasks;
 
-public class Bounds {
+public class BoundsDouble {
 	private double min = Double.MIN_VALUE;
 	private double max = Double.MAX_VALUE;
 	
@@ -15,6 +15,6 @@ public class Bounds {
 	}
 	
 	public boolean isWithin(double value) {
-		return min < value && value < max;
+		return !(value < min || max < value);
 	}
 }

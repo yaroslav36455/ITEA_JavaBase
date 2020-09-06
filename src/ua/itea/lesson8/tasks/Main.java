@@ -7,8 +7,11 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		FigureFactory factory = new FigureFactory();
+		RequesterInteger requester = new RequesterInteger();
 		
-		factory.setScanner(scanner);
+		factory.initialize(scanner);
+		requester.setScanner(scanner);
+		requester.setBounds(0, 3);
 		
 		System.out.println("1-Circle");
 		System.out.println("2-Rectangle");
@@ -17,34 +20,29 @@ public class Main {
 		
 		boolean isQuit = false;
 		while(!isQuit) {
-			System.out.print("Select figure or exit: ");
-			
-			if (!scanner.hasNextInt()) {
-				scanner.next();
-				System.out.println("Invalid input, try again");
-				continue;
-			}
-			
-			switch (scanner.nextInt()) {
+			switch (requester.next("Select figure or exit")) {
 			case 1:
+				System.out.print("1-Circle");
 				factory.createCircle().printInfo();
 				break;
 				
 			case 2:
+				System.out.print("2-Rectangle");
 				factory.createRectangle().printInfo();
 				break;	
 				
 			case 3:
+				System.out.print("3-Triangle");
 				factory.createTriangle().printInfo();
 				break;
 				
 			case 0:
-				System.out.println("0 - Exit");
+				System.out.println("0-Exit");
 				isQuit = true;
 				break;
 
 			default:
-				System.out.println("Invalid input, try again");
+				/* never fall into */
 				break;
 			}
 		}
