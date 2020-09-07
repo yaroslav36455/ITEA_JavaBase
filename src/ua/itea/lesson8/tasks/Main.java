@@ -28,17 +28,17 @@ public class Main {
 		while(!isQuit) {
 			switch (requester.next("Select figure or exit")) {
 			case 1:
-				System.out.print("1-Circle");
+				System.out.println("1-Circle");
 				factory.createCircle().printInfo();
 				break;
 				
 			case 2:
-				System.out.print("2-Rectangle");
+				System.out.println("2-Rectangle");
 				factory.createRectangle().printInfo();
 				break;	
 				
 			case 3:
-				System.out.print("3-Triangle");
+				System.out.println("3-Triangle");
 				factory.createTriangle().printInfo();
 				break;
 				

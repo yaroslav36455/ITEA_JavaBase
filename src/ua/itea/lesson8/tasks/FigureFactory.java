@@ -24,7 +24,7 @@ public class FigureFactory {
 	public Circle createCircle() {
 		Circle circle = new Circle();
 		
-		System.out.println(", enter the radius");
+		System.out.println("Enter the radius");
 		circle.set(requesterLength.next("Radius"));
 		return circle;
 	}
@@ -32,7 +32,7 @@ public class FigureFactory {
 	public Rectangle createRectangle() {
 		Rectangle rectangle = new Rectangle();
 		
-		System.out.println(", enter the two sides");
+		System.out.println("Enter the two sides");
 		rectangle.set(requesterLength.next("Side 1"),
 					  requesterLength.next("Side 2"));
 		return rectangle;
@@ -41,7 +41,7 @@ public class FigureFactory {
 	public Triangle createTriangle() {
 		Triangle triangle = new Triangle();
 		
-		System.out.println(", enter the two sides"
+		System.out.println("Enter the two sides"
 				   		   + " and the angle between them in degrees");
 		triangle.set(requesterLength.next("Side 1"),
 					 requesterLength.next("Side 2"),
