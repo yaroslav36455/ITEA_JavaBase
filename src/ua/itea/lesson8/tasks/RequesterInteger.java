@@ -1,6 +1,7 @@
 package ua.itea.lesson8.tasks;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class RequesterInteger {
 	private Scanner scanner;
@@ -15,6 +16,7 @@ public class RequesterInteger {
 	}
 	
 	int next(String label) {
+		Pattern patt = Pattern.compile("[^\\n]*\\n");
 		int value = 0;
 		
 		while (true) {
@@ -24,13 +26,13 @@ public class RequesterInteger {
 				if (bounds.isWithin(value)) {
 					break;
 				}
-			} else {
-				scanner.next();				
 			}
 			
+			scanner.skip(patt);
 			System.out.println(errorMessage());
 		}
 		
+		scanner.skip(patt);
 		return value;
 	}
 	
