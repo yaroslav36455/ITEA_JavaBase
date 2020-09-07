@@ -16,10 +16,13 @@ public class Main {
 		requester.setScanner(scanner);
 		factory.initialize(scanner);
 		
-		System.out.println("1-Circle");
-		System.out.println("2-Rectangle");
-		System.out.println("3-Triangle");
-		System.out.println("0-Exit");
+		System.out.println("┌───────────┐");
+		System.out.println("│   Menu    │");
+		System.out.println("│1-Circle   │");
+		System.out.println("│2-Rectangle│");
+		System.out.println("│3-Triangle │");
+		System.out.println("│0-Exit     │");
+		System.out.println("└───────────┘");
 		
 		boolean isQuit = false;
 		while(!isQuit) {
@@ -48,6 +51,9 @@ public class Main {
 				/* never fall into */
 				break;
 			}
+			
+			System.out.println("══════════════════════════════════"
+							  +"══════════════════════════════════");
 		}
 
 		scanner.close();
