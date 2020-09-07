@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class RequesterInteger {
 	private Scanner scanner;
-	private BoundsInteger bounds = new BoundsInteger();
+	private BoundsInteger bounds;
 	
 	void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
 	
-	void setBounds(int boundFirst, int boundSecond) {
-		bounds.set(boundFirst, boundSecond);
+	void setBounds(BoundsInteger bounds) {
+		this.bounds = bounds;
 	}
 	
 	int next(String label) {

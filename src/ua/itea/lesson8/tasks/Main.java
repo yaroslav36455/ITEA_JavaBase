@@ -8,10 +8,13 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		FigureFactory factory = new FigureFactory();
 		RequesterInteger requester = new RequesterInteger();
+		BoundsInteger menuButtons = new BoundsInteger();
 		
-		factory.initialize(scanner);
+		menuButtons.set(0, 3);
+		menuButtons.include();
+		requester.setBounds(menuButtons);
 		requester.setScanner(scanner);
-		requester.setBounds(0, 3);
+		factory.initialize(scanner);
 		
 		System.out.println("1-Circle");
 		System.out.println("2-Rectangle");

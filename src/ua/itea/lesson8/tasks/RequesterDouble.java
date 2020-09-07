@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class RequesterDouble {
 	private Scanner scanner;
-	private BoundsDouble bounds = new BoundsDouble();
+	private BoundsDouble bounds;
 	
 	void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
 	
-	void setBounds(double boundFirst, double boundSecond) {
-		bounds.set(boundFirst, boundSecond);
+	void setBounds(BoundsDouble bounds) {
+		this.bounds = bounds;
 	}
 	
 	double next(String label) {

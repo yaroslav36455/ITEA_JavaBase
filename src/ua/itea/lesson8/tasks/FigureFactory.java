@@ -7,11 +7,18 @@ public class FigureFactory {
 	private RequesterDouble requesterDegree = new RequesterDouble();
 	
 	public void initialize(Scanner scanner) {
-		requesterLength.setScanner(scanner);
-		requesterLength.setBounds(Double.MIN_VALUE, Double.MAX_VALUE);
+		BoundsDouble boundsLength = new BoundsDouble();
+		BoundsDouble boundsDegree = new BoundsDouble();
 		
+		boundsLength.set(0, Double.MAX_VALUE);
+		boundsLength.exclude();
+		requesterLength.setScanner(scanner);
+		requesterLength.setBounds(boundsLength);
+
+		boundsDegree.set(0, 180);
+		boundsDegree.exclude();
 		requesterDegree.setScanner(scanner);
-		requesterDegree.setBounds(Double.MIN_VALUE, 180 - Double.MIN_VALUE);
+		requesterDegree.setBounds(boundsDegree);
 	}
 	
 	public Circle createCircle() {
