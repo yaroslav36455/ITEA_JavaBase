@@ -8,16 +8,16 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		FigureFactory factory = new FigureFactory();
 		RequesterInteger requester = new RequesterInteger();
-		BoundsInteger menuButtons = new BoundsInteger();
+		BoundsInteger menuItems = new BoundsInteger();
 		
-		menuButtons.set(0, 3);
-		menuButtons.include();
-		requester.setBounds(menuButtons);
+		menuItems.set(0, 3);
+		menuItems.include();
+		requester.setBounds(menuItems);
 		requester.setScanner(scanner);
 		factory.initialize(scanner);
 		
 		System.out.println("┌───────────┐");
-		System.out.println("│   Menu    │");
+		System.out.println("│ Main Menu │");
 		System.out.println("│1-Circle   │");
 		System.out.println("│2-Rectangle│");
 		System.out.println("│3-Triangle │");

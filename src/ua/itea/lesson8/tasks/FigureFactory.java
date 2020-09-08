@@ -37,8 +37,8 @@ public class FigureFactory {
 		Rectangle rectangle = new Rectangle();
 		
 		System.out.println("Enter the two sides");
-		rectangle.set(requesterLength.next("Side 1"),
-					  requesterLength.next("Side 2"));
+		rectangle.set(requesterLength.next("Side A"),
+					  requesterLength.next("Side B"));
 		return rectangle;
 	}
 	
@@ -53,7 +53,7 @@ public class FigureFactory {
 		requester.setScanner(scanner);
 		
 		System.out.println("┌─────────────────────────┐");
-		System.out.println("│     Triangle Menu       │");
+		System.out.println("│ Computation Method Menu │");
 		System.out.println("│1-Two sides and angle    │");
 		System.out.println("│2-One side and two angles│");
 		System.out.println("└─────────────────────────┘");
@@ -82,9 +82,9 @@ public class FigureFactory {
 		
 		System.out.println("Enter the two sides"
 				   		   + " and the angle between them in degrees");
-		sideA = requesterLength.next("Side 1");
-		sideB = requesterLength.next("Side 2");
-		angleAB.setDegree(requesterDegree.next("Angle "));
+		sideA = requesterLength.next("Side A");
+		sideB = requesterLength.next("Side B");
+		angleAB.setDegree(requesterDegree.next("Angle AB"));
 		triangle.set(sideA, sideB, angleAB);
 	}
 	
@@ -94,9 +94,9 @@ public class FigureFactory {
 		Angle angleAC = new Angle();
 		
 		System.out.println("Enter one side and two adjacent angles");
-		sideA = requesterLength.next("Side   ");
-		angleAB.setDegree(requesterDegree.next("Angle 1"));
-		angleAC.setDegree(requesterDegree.next("Angle 2"));
+		sideA = requesterLength.next("Side A");
+		angleAB.setDegree(requesterDegree.next("Angle AB"));
+		angleAC.setDegree(requesterDegree.next("Angle AC"));
 		triangle.set(sideA, angleAB, angleAC);
 	}
 }
