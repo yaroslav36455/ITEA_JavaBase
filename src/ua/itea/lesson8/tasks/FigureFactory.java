@@ -44,12 +44,17 @@ public class FigureFactory {
 	
 	public Triangle createTriangle() {
 		Triangle triangle = new Triangle();
+		double sideA;
+		double sideB;
+		Angle angleAB = new Angle();
 		
 		System.out.println("Enter the two sides"
 				   		   + " and the angle between them in degrees");
-		triangle.set(requesterLength.next("Side 1"),
-					 requesterLength.next("Side 2"),
-					 requesterDegree.next("Angle "));
+		sideA = requesterLength.next("Side 1");
+		sideB = requesterLength.next("Side 2");
+		angleAB.setDegree(requesterDegree.next("Angle "));
+		triangle.set(sideA, sideB, angleAB);
+		
 		return triangle;
 	}
 }

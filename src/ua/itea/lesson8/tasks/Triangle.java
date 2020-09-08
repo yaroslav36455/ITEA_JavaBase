@@ -11,21 +11,20 @@ public class Triangle {
 						  name, perim, area, color);
 	}
 	
-	public void set(double sideA, double sideB, double angle) {
-		angle = angle * Math.PI / 180;
-		computePerimeter(sideA, sideB, angle);
-		computeArea(sideA, sideB, angle);
+	public void set(double sideA, double sideB, Angle angleAB) {
+		computePerimeter(sideA, sideB, angleAB);
+		computeArea(sideA, sideB, angleAB);
 		updateColor();
 	}
 	
-	private void computePerimeter(double sideA, double sideB, double angle) {
+	private void computePerimeter(double sideA, double sideB, Angle angleAB) {
 		double sideC = Math.sqrt(sideA * sideA + sideB * sideB
-								 - 2 * sideA * sideB * Math.cos(angle));
+								 - 2 * sideA * sideB * Math.cos(angleAB.getRadians()));
 		perim = sideA + sideB + sideC;
 	}
 	
-	private void computeArea(double sideA, double sideB, double angle) {
-		area = sideA * sideB * Math.sin(angle) / 2;
+	private void computeArea(double sideA, double sideB, Angle angleAB) {
+		area = sideA * sideB * Math.sin(angleAB.getRadians()) / 2;
 	}
 	
 	private void updateColor() {
