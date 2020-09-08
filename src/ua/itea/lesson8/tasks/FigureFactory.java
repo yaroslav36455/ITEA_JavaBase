@@ -42,8 +42,40 @@ public class FigureFactory {
 		return rectangle;
 	}
 	
-	public Triangle createTriangle() {
+	public Triangle createTriangle(Scanner scanner) {
 		Triangle triangle = new Triangle();
+		RequesterInteger requester = new RequesterInteger();
+		BoundsInteger menuItems = new BoundsInteger();
+
+		menuItems.set(1, 2);
+		menuItems.include();
+		requester.setBounds(menuItems);
+		requester.setScanner(scanner);
+		
+		System.out.println("┌─────────────────────────┐");
+		System.out.println("│     Triangle Menu       │");
+		System.out.println("│1-Two sides and angle    │");
+		System.out.println("│2-One side and two angles│");
+		System.out.println("└─────────────────────────┘");
+		
+		switch (requester.next("Select computation method")) {
+		case 1:
+			setTriangleTwoSidesAndAngle(triangle);
+			break;
+			
+		case 2:
+			setTriangleOneSideAndTwoAngles(triangle);
+			break;
+			
+		default:
+			/* never fall into */
+			break;
+		}
+		
+		return triangle;
+	}
+	
+	private void setTriangleTwoSidesAndAngle(Triangle triangle) {
 		double sideA;
 		double sideB;
 		Angle angleAB = new Angle();
@@ -54,7 +86,9 @@ public class FigureFactory {
 		sideB = requesterLength.next("Side 2");
 		angleAB.setDegree(requesterDegree.next("Angle "));
 		triangle.set(sideA, sideB, angleAB);
-		
-		return triangle;
+	}
+	
+	private void setTriangleOneSideAndTwoAngles(Triangle triangle) {
+		System.err.println("<computation method not supported yet>");
 	}
 }

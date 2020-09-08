@@ -39,7 +39,7 @@ public class Main {
 				
 			case 3:
 				System.out.println("3-Triangle");
-				factory.createTriangle().printInfo();
+				factory.createTriangle(scanner).printInfo();
 				break;
 				
 			case 0:
