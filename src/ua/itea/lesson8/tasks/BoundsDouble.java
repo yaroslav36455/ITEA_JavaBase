@@ -1,5 +1,8 @@
 package ua.itea.lesson8.tasks;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 public class BoundsDouble {
 	private double min = Double.NEGATIVE_INFINITY;
 	private double max = Double.POSITIVE_INFINITY;
@@ -7,6 +10,9 @@ public class BoundsDouble {
 	private boolean isIncludeMax = true;
 	
 	public void set(double boundFirst, double boundSecond) {
+		boundFirst  = round(boundFirst);
+		boundSecond = round(boundSecond);
+		
 		if(boundFirst < boundSecond) {
 			min = boundFirst;
 			max = boundSecond;
@@ -46,5 +52,12 @@ public class BoundsDouble {
 	
 	public void excludeMax() {
 		isIncludeMax = false;
+	}
+	
+	private double round(double d) {
+		BigDecimal value = BigDecimal.valueOf(d);
+		BigDecimal zero = BigDecimal.valueOf(0);
+		
+		return value.subtract(zero, new MathContext(15)).doubleValue();
 	}
 }

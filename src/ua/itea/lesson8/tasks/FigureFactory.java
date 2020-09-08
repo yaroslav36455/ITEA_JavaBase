@@ -1,7 +1,5 @@
 package ua.itea.lesson8.tasks;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Scanner;
 
 public class FigureFactory {
@@ -102,11 +100,8 @@ public class FigureFactory {
 		
 		bounds.set(0, 180);
 		angleAB.setDegree(requester.next("Angle AB"));
-		
-		BigDecimal sumDegrees = BigDecimal.valueOf(180);
-		BigDecimal usedDegrees = BigDecimal.valueOf(angleAB.getDegree());
-		double maxAngle = sumDegrees.subtract(usedDegrees, new MathContext(16)).doubleValue();
-		bounds.set(0, maxAngle);
+
+		bounds.set(0, 180 - angleAB.getDegree());
 		angleAC.setDegree(requester.next("Angle AC"));
 		
 		triangle.set(sideA, angleAB, angleAC);
