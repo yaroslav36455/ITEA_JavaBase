@@ -18,4 +18,12 @@ public class Angle {
 	public double getDegree() {
 		return angle * 180 / Math.PI;
 	}
+	
+	public double tan() {
+		return Math.tan(getRadians());
+	}
+	
+	public double ctg() {
+		return 1.0 / Math.tan(getRadians());
+	}
 }

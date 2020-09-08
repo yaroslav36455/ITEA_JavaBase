@@ -89,6 +89,14 @@ public class FigureFactory {
 	}
 	
 	private void setTriangleOneSideAndTwoAngles(Triangle triangle) {
-		System.err.println("<computation method not supported yet>");
+		double sideA;
+		Angle angleAB = new Angle();
+		Angle angleAC = new Angle();
+		
+		System.out.println("Enter one side and two adjacent angles");
+		sideA = requesterLength.next("Side   ");
+		angleAB.setDegree(requesterDegree.next("Angle 1"));
+		angleAC.setDegree(requesterDegree.next("Angle 2"));
+		triangle.set(sideA, angleAB, angleAC);
 	}
 }
