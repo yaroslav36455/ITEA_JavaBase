@@ -3,22 +3,26 @@ package ua.itea.lesson8.tasks;
 import java.util.Scanner;
 
 public class FigureFactory {
-	private RequesterDouble requesterLength = new RequesterDouble();
-	private RequesterDouble requesterDegree = new RequesterDouble();
+	private RequesterDouble requesterLength;
+	private RequesterDouble requesterDegree;
 	
 	public void initialize(Scanner scanner) {
-		BoundsDouble boundsLength = new BoundsDouble();
-		BoundsDouble boundsDegree = new BoundsDouble();
+		requesterLength = createRequester(scanner, 0, Double.MAX_VALUE);
+		requesterDegree = createRequester(scanner, 0, 180);
+	}
+	
+	private RequesterDouble createRequester(Scanner scanner,
+											double boundFirst,
+											double boundSecond) {
+		RequesterDouble requester = new RequesterDouble();
+		BoundsDouble bounds = new BoundsDouble();
 		
-		boundsLength.set(0, Double.MAX_VALUE);
-		boundsLength.exclude();
-		requesterLength.setScanner(scanner);
-		requesterLength.setBounds(boundsLength);
-
-		boundsDegree.set(0, 180);
-		boundsDegree.exclude();
-		requesterDegree.setScanner(scanner);
-		requesterDegree.setBounds(boundsDegree);
+		bounds.set(boundFirst, boundSecond);
+		bounds.exclude();
+		requester.setBounds(bounds);
+		requester.setScanner(scanner);
+		
+		return requester;
 	}
 	
 	public Circle createCircle() {
