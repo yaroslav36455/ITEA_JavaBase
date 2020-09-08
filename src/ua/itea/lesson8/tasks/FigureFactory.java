@@ -1,35 +1,29 @@
 package ua.itea.lesson8.tasks;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.Scanner;
 
 public class FigureFactory {
-	private RequesterDouble requesterLength;
-	private RequesterDouble requesterDegree;
+	private BoundsDouble bounds;
+	private RequesterDouble requester;
 	
 	public void initialize(Scanner scanner) {
-		requesterLength = createRequester(scanner, 0, Double.MAX_VALUE);
-		requesterDegree = createRequester(scanner, 0, 180);
-	}
-	
-	private RequesterDouble createRequester(Scanner scanner,
-											double boundFirst,
-											double boundSecond) {
-		RequesterDouble requester = new RequesterDouble();
-		BoundsDouble bounds = new BoundsDouble();
-		
-		bounds.set(boundFirst, boundSecond);
+		bounds = new BoundsDouble();
 		bounds.exclude();
+		requester = new RequesterDouble();
 		requester.setBounds(bounds);
 		requester.setScanner(scanner);
-		
-		return requester;
 	}
 	
 	public Circle createCircle() {
 		Circle circle = new Circle();
 		
 		System.out.println("Enter the radius");
-		circle.set(requesterLength.next("Radius"));
+		
+		bounds.set(0, Double.MAX_VALUE);
+		circle.set(requester.next("Radius"));
+		
 		return circle;
 	}
 	
@@ -37,8 +31,11 @@ public class FigureFactory {
 		Rectangle rectangle = new Rectangle();
 		
 		System.out.println("Enter the two sides");
-		rectangle.set(requesterLength.next("Side A"),
-					  requesterLength.next("Side B"));
+		
+		bounds.set(0, Double.MAX_VALUE);
+		rectangle.set(requester.next("Side A"),
+					  requester.next("Side B"));
+		
 		return rectangle;
 	}
 	
@@ -81,10 +78,15 @@ public class FigureFactory {
 		Angle angleAB = new Angle();
 		
 		System.out.println("Enter the two sides"
-				   		   + " and the angle between them in degrees");
-		sideA = requesterLength.next("Side A");
-		sideB = requesterLength.next("Side B");
-		angleAB.setDegree(requesterDegree.next("Angle AB"));
+		   		           + " and the angle between them in degrees");
+		
+		bounds.set(0, Double.MAX_VALUE);
+		sideA = requester.next("Side A");
+		sideB = requester.next("Side B");
+		
+		bounds.set(0, 180);
+		angleAB.setDegree(requester.next("Angle AB"));
+		
 		triangle.set(sideA, sideB, angleAB);
 	}
 	
@@ -94,9 +96,19 @@ public class FigureFactory {
 		Angle angleAC = new Angle();
 		
 		System.out.println("Enter one side and two adjacent angles");
-		sideA = requesterLength.next("Side A");
-		angleAB.setDegree(requesterDegree.next("Angle AB"));
-		angleAC.setDegree(requesterDegree.next("Angle AC"));
+		
+		bounds.set(0, Double.MAX_VALUE);
+		sideA = requester.next("Side A");
+		
+		bounds.set(0, 180);
+		angleAB.setDegree(requester.next("Angle AB"));
+		
+		BigDecimal sumDegrees = BigDecimal.valueOf(180);
+		BigDecimal usedDegrees = BigDecimal.valueOf(angleAB.getDegree());
+		double maxAngle = sumDegrees.subtract(usedDegrees, new MathContext(16)).doubleValue();
+		bounds.set(0, maxAngle);
+		angleAC.setDegree(requester.next("Angle AC"));
+		
 		triangle.set(sideA, angleAB, angleAC);
 	}
 }
