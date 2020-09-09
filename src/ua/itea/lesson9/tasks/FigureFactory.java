@@ -5,17 +5,21 @@ import java.util.Scanner;
 public class FigureFactory {
 	private BoundsDouble bounds;
 	private RequesterDouble requester;
+	private ColorRandomizer colorRandomizer;
 	
 	public void initialize(Scanner scanner) {
 		bounds = new BoundsDouble();
 		bounds.exclude();
+		
 		requester = new RequesterDouble();
 		requester.setBounds(bounds);
 		requester.setScanner(scanner);
+		
+		colorRandomizer = new ColorRandomizer();
 	}
 	
 	public Circle createCircle() {
-		Circle circle = new Circle();
+		Circle circle = new Circle(colorRandomizer.getRandomColor());
 		
 		System.out.println("Enter the radius");
 		
@@ -26,7 +30,7 @@ public class FigureFactory {
 	}
 	
 	public Rectangle createRectangle() {
-		Rectangle rectangle = new Rectangle();
+		Rectangle rectangle = new Rectangle(colorRandomizer.getRandomColor());
 		
 		System.out.println("Enter the two sides");
 		
@@ -38,7 +42,7 @@ public class FigureFactory {
 	}
 	
 	public Triangle createTriangle(Scanner scanner) {
-		Triangle triangle = new Triangle();
+		Triangle triangle = new Triangle(colorRandomizer.getRandomColor());
 		RequesterInteger requester = new RequesterInteger();
 		BoundsInteger menuItems = new BoundsInteger();
 

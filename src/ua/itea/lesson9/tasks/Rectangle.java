@@ -1,10 +1,14 @@
 package ua.itea.lesson9.tasks;
 
 public class Rectangle {
-	private double perim = 0.0;
-	private double area  = 0.0;
-	private String name  = "Rectangle";
-	private String color = "<none>";
+	private double perim;
+	private double area;
+	private String name = "Rectangle";
+	private String color;
+	
+	public Rectangle(String color) {
+		this.color = color;
+	}
 	
 	public void printInfo() {
 		System.out.printf("Figure: %-9s; Perimeter: %.3e; Area: %.3e; Color: %s\n",
@@ -18,7 +22,6 @@ public class Rectangle {
 	public void set(double sideA, double sideB) {
 		computePerimeter(sideA, sideB);
 		computeArea(sideA, sideB);
-		updateColor();
 	}
 	
 	private void computePerimeter(double sideA, double sideB) {
@@ -27,9 +30,5 @@ public class Rectangle {
 	
 	private void computeArea(double sideA, double sideB) {
 		area = sideA * sideB;
-	}
-	
-	private void updateColor() {
-		color = (area > 5.0) ? "White" : "Black";
 	}
 }

@@ -1,10 +1,14 @@
 package ua.itea.lesson9.tasks;
 
 public class Triangle {
-	private double perim = 0.0;
-	private double area  = 0.0;
-	private String name  = "Triangle";
-	private String color = "<none>";
+	private double perim;
+	private double area;
+	private String name = "Triangle";
+	private String color;
+	
+	public Triangle(String color) {
+		this.color = color;
+	}
 	
 	public void printInfo() {
 		System.out.printf("Figure: %-9s; Perimeter: %.3e; Area: %.3e; Color: %s\n",
@@ -14,13 +18,11 @@ public class Triangle {
 	public void set(double sideA, double sideB, Angle angleAB) {
 		computePerimeter(sideA, sideB, angleAB);
 		computeArea(sideA, sideB, angleAB);
-		updateColor();
 	}
 	
 	public void set(double sideA, Angle angleAB, Angle angleAC) {
 		computePerimeter(sideA, angleAB, angleAC);
 		computeArea(sideA, angleAB, angleAC);
-		updateColor();
 	}
 	
 	private void computePerimeter(double sideA, double sideB, Angle angleAB) {
@@ -45,9 +47,5 @@ public class Triangle {
 	
 	private void computeArea(double sideA, Angle angleAB, Angle angleAC) {
 		area = sideA * sideA / (angleAB.ctg() + angleAC.ctg()) / 2;
-	}
-	
-	private void updateColor() {
-		color = (area > 5.0) ? "White" : "Black";
 	}
 }
