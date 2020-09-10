@@ -7,6 +7,11 @@ public class RequesterDouble {
 	private Scanner scanner;
 	private BoundsDouble bounds;
 	
+	public RequesterDouble(Scanner scanner, BoundsDouble bounds) {
+		setScanner(scanner);
+		setBounds(bounds);
+	}
+	
 	void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}

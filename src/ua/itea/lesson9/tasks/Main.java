@@ -8,13 +8,12 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		FigureFactory factory = new FigureFactory(scanner);
 		FigureContainer container = new FigureContainer();
-		RequesterInteger requester = new RequesterInteger();
+		RequesterInteger requester;
 		BoundsInteger menuItems = new BoundsInteger();
 		
 		menuItems.set(0, 3);
 		menuItems.include();
-		requester.setBounds(menuItems);
-		requester.setScanner(scanner);
+		requester = new RequesterInteger(scanner, menuItems);
 		
 		System.out.println("┌───────────┐");
 		System.out.println("│ Main Menu │");

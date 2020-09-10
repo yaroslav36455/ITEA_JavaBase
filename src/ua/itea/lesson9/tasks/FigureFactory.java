@@ -11,9 +11,7 @@ public class FigureFactory {
 		bounds = new BoundsDouble();
 		bounds.exclude();
 		
-		requester = new RequesterDouble();
-		requester.setBounds(bounds);
-		requester.setScanner(scanner);
+		requester = new RequesterDouble(scanner, bounds);
 		
 		colorRandomizer = new ColorRandomizer();
 	}
@@ -37,13 +35,12 @@ public class FigureFactory {
 	
 	public Triangle createTriangle(Scanner scanner) {
 		Triangle triangle = null;
-		RequesterInteger requester = new RequesterInteger();
+		RequesterInteger requester;
 		BoundsInteger menuItems = new BoundsInteger();
 
 		menuItems.set(1, 2);
 		menuItems.include();
-		requester.setBounds(menuItems);
-		requester.setScanner(scanner);
+		requester = new RequesterInteger(scanner, menuItems);
 		
 		System.out.println("┌─────────────────────────┐");
 		System.out.println("│ Computation Method Menu │");

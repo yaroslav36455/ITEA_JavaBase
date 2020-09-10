@@ -7,6 +7,11 @@ public class RequesterInteger {
 	private Scanner scanner;
 	private BoundsInteger bounds;
 	
+	public RequesterInteger(Scanner scanner, BoundsInteger bounds) {
+		setScanner(scanner);
+		setBounds(bounds);
+	}
+	
 	void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
