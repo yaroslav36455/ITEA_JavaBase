@@ -7,7 +7,7 @@ public class FigureFactory {
 	private RequesterDouble requester;
 	private ColorRandomizer colorRandomizer;
 	
-	public void initialize(Scanner scanner) {
+	public FigureFactory(Scanner scanner) {
 		bounds = new BoundsDouble();
 		bounds.exclude();
 		

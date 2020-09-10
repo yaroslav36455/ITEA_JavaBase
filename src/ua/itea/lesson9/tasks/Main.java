@@ -6,16 +6,15 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		FigureFactory factory = new FigureFactory();
+		FigureFactory factory = new FigureFactory(scanner);
+		FigureContainer container = new FigureContainer();
 		RequesterInteger requester = new RequesterInteger();
 		BoundsInteger menuItems = new BoundsInteger();
-		FigureContainer container = new FigureContainer();
 		
 		menuItems.set(0, 3);
 		menuItems.include();
 		requester.setBounds(menuItems);
 		requester.setScanner(scanner);
-		factory.initialize(scanner);
 		
 		System.out.println("┌───────────┐");
 		System.out.println("│ Main Menu │");
