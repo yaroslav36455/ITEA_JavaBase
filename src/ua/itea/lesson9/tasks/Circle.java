@@ -6,7 +6,8 @@ public class Circle {
 	private String name = "Circle";
 	private String color;
 	
-	public Circle(String color) {
+	public Circle(double radius, String color) {
+		reset(radius);
 		this.color = color; 
 	}
 
@@ -15,7 +16,7 @@ public class Circle {
 						  name, perim, area, color);
 	}
 	
-	public void set(double radius) {
+	public void reset(double radius) {
 		computePerimeter(radius);
 		computeArea(radius);
 	}

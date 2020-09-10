@@ -6,7 +6,13 @@ public class Triangle {
 	private String name = "Triangle";
 	private String color;
 	
-	public Triangle(String color) {
+	public Triangle(double sideA, double sideB, Angle angleAB, String color) {
+		reset(sideA, sideB, angleAB);
+		this.color = color;
+	}
+	
+	public Triangle(double sideA, Angle angleAB, Angle angleAC, String color) {
+		reset(sideA, angleAB, angleAC);
 		this.color = color;
 	}
 	
@@ -15,12 +21,12 @@ public class Triangle {
 						  name, perim, area, color);
 	}
 	
-	public void set(double sideA, double sideB, Angle angleAB) {
+	public void reset(double sideA, double sideB, Angle angleAB) {
 		computePerimeter(sideA, sideB, angleAB);
 		computeArea(sideA, sideB, angleAB);
 	}
 	
-	public void set(double sideA, Angle angleAB, Angle angleAC) {
+	public void reset(double sideA, Angle angleAB, Angle angleAC) {
 		computePerimeter(sideA, angleAB, angleAC);
 		computeArea(sideA, angleAB, angleAC);
 	}

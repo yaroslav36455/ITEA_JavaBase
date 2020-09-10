@@ -6,7 +6,13 @@ public class Rectangle {
 	private String name = "Rectangle";
 	private String color;
 	
-	public Rectangle(String color) {
+	public Rectangle(double side, String color) {
+		reset(side);
+		this.color = color;
+	}
+	
+	public Rectangle(double sideA, double sideB, String color) {
+		reset(sideA, sideB);
 		this.color = color;
 	}
 	
@@ -15,11 +21,11 @@ public class Rectangle {
 						  name, perim, area, color);
 	}
 	
-	public void set(double side) {
-		set(side, side);
+	public void reset(double side) {
+		reset(side, side);
 	}
 	
-	public void set(double sideA, double sideB) {
+	public void reset(double sideA, double sideB) {
 		computePerimeter(sideA, sideB);
 		computeArea(sideA, sideB);
 	}

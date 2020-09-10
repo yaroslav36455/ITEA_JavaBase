@@ -19,30 +19,24 @@ public class FigureFactory {
 	}
 	
 	public Circle createCircle() {
-		Circle circle = new Circle(colorRandomizer.getRandomColor());
-		
 		System.out.println("Enter the radius");
 		
 		bounds.set(0, Double.MAX_VALUE);
-		circle.set(requester.next("Radius"));
-		
-		return circle;
+		return new Circle(requester.next("Radius"),
+					      colorRandomizer.getRandomColor());
 	}
 	
 	public Rectangle createRectangle() {
-		Rectangle rectangle = new Rectangle(colorRandomizer.getRandomColor());
-		
 		System.out.println("Enter the two sides");
 		
 		bounds.set(0, Double.MAX_VALUE);
-		rectangle.set(requester.next("Side A"),
-					  requester.next("Side B"));
-		
-		return rectangle;
+		return new Rectangle(requester.next("Side A"),
+							 requester.next("Side B"),
+							 colorRandomizer.getRandomColor());
 	}
 	
 	public Triangle createTriangle(Scanner scanner) {
-		Triangle triangle = new Triangle(colorRandomizer.getRandomColor());
+		Triangle triangle = null;
 		RequesterInteger requester = new RequesterInteger();
 		BoundsInteger menuItems = new BoundsInteger();
 
@@ -59,11 +53,11 @@ public class FigureFactory {
 		
 		switch (requester.next("Select computation method")) {
 		case 1:
-			setTriangleTwoSidesAndAngle(triangle);
+			triangle = createTriangleTwoSidesAndAngle();
 			break;
 			
 		case 2:
-			setTriangleOneSideAndTwoAngles(triangle);
+			triangle = createTriangleOneSideAndTwoAngles();
 			break;
 			
 		default:
@@ -74,7 +68,7 @@ public class FigureFactory {
 		return triangle;
 	}
 	
-	private void setTriangleTwoSidesAndAngle(Triangle triangle) {
+	private Triangle createTriangleTwoSidesAndAngle() {
 		double sideA;
 		double sideB;
 		Angle angleAB = new Angle();
@@ -89,10 +83,11 @@ public class FigureFactory {
 		bounds.set(0, 180);
 		angleAB.setDegree(requester.next("Angle AB"));
 		
-		triangle.set(sideA, sideB, angleAB);
+		return new Triangle(sideA, sideB, angleAB,
+							colorRandomizer.getRandomColor());
 	}
 	
-	private void setTriangleOneSideAndTwoAngles(Triangle triangle) {
+	private Triangle createTriangleOneSideAndTwoAngles() {
 		double sideA;
 		Angle angleAB = new Angle();
 		Angle angleAC = new Angle();
@@ -108,6 +103,7 @@ public class FigureFactory {
 		bounds.set(0, 180 - angleAB.getDegree());
 		angleAC.setDegree(requester.next("Angle AC"));
 		
-		triangle.set(sideA, angleAB, angleAC);
+		return new Triangle(sideA, angleAB, angleAC,
+							colorRandomizer.getRandomColor());
 	}
 }
