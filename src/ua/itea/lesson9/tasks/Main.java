@@ -26,7 +26,7 @@ public class Main {
 		boolean isQuit = false;
 		while(!isQuit && !container.isFull()) {
 			
-			System.out.println("----------------------------------------------------------------------");
+			System.out.println("---------------------------------------------");
 			container.printFullnessInfo();
 			
 			switch (requester.next("Select figure or exit")) {
@@ -68,11 +68,10 @@ public class Main {
 			}
 		}
 
-		System.out.println("══════════════════════════════════════════════════════════════════════");
+		System.out.println("═════════════════════════════════════════════");
 		container.printFullnessInfo();
-		System.out.println("----------------------------------------------------------------------");
+		System.out.println("---------------------------------------------");
 		container.printFiguresInfo();
-		System.out.println("══════════════════════════════════════════════════════════════════════");
 
 		scanner.close();
 	}

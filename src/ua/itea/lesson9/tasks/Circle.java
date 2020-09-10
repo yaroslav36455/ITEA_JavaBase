@@ -10,10 +10,21 @@ public class Circle {
 		reset(radius);
 		this.color = color; 
 	}
-
-	public void printInfo() {
-		System.out.printf("Figure: %-9s; Perimeter: %.3e; Area: %.3e; Color: %s\n",
-						  name, perim, area, color);
+	
+	String getName() {
+		return name;
+	}
+	
+	double getPerimeter() {
+		return perim;
+	}
+	
+	double getArea() {
+		return area;
+	}
+	
+	String getColor() {
+		return color;
 	}
 	
 	public void reset(double radius) {

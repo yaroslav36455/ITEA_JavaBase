@@ -55,18 +55,38 @@ public class FigureContainer {
 			System.out.println("No figures");
 			return;
 		}
+		System.out.println("┏━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━┓");
+		System.out.println("┃№│Figure   │Perimeter│Area     │Color ┃");
+		System.out.println("┠─┼─────────┼─────────┼─────────┼──────┨");
+		String format = "┃%d│%-9s│%.3e│%.3e│%-6s┃\n";
+		
+		int counter = 0;
 		
 		for (int i = 0; i < amountOfCircles; i++) {
-			circles[i].printInfo();
+			System.out.printf(format, counter++,
+									  circles[i].getName(),
+									  circles[i].getPerimeter(),
+									  circles[i].getArea(),
+									  circles[i].getColor());
 		}
 		
 		for (int i = 0; i < amountOfRectangles; i++) {
-			rectangles[i].printInfo();
+			System.out.printf(format, counter++,
+									  rectangles[i].getName(),
+									  rectangles[i].getPerimeter(),
+									  rectangles[i].getArea(),
+									  rectangles[i].getColor());
 		}
 		
 		for (int i = 0; i < amountOfTriangles; i++) {
-			triangles[i].printInfo();
+			System.out.printf(format, counter++,
+									  triangles[i].getName(),
+									  triangles[i].getPerimeter(),
+									  triangles[i].getArea(),
+									  triangles[i].getColor());
 		}
+		
+		System.out.println("┗━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━┛");
 	}
 
 	public int amountOfCircles() {
