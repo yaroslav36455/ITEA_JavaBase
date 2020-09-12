@@ -25,44 +25,12 @@ public class Pudge {
 		return health > 0;
 	}
 	
-	public String[] getItemsNames() {
-		return slots.getItemsNames();
-	}
-	
-	public void addItemOrNull(Item item) {
-		if(item != null) {
-			addItem(item);
-		}
-	}
-	
-	public void addItem(Item item) {		
-		slots.addItem(item);
-		computeStrikePower();
-	}
-	
-	public void removeItem(String name) {
-		slots.removeItem(name);
-		computeStrikePower();
-	}
-	
 	public void setHealth(int health) {
 		this.health = health;
 	}
 	
 	public int getHealth() {
 		return health;
-	}
-	
-	public int getAgility() {
-		return agility;
-	}
-	
-	public int getIntelligence() {
-		return intelligence;
-	}
-	
-	public int getStrength() {
-		return strength;
 	}
 	
 	public int getStrikePower() {
@@ -74,75 +42,132 @@ public class Pudge {
 	}
 	
 	public String getInfo() {
-		String log = String.format("Health %4d|Agility %3d|Intelligence %3d|"
-								   + "Strength %3d|Strike Power %3d",
+		String log = String.format("Health %4d| Agility %3d| Intelligence %3d|"
+								   + " Strength %3d| Strike Power %3d",
 								   health, agility, intelligence,
 								   strength, strikePower);
 		
-		log += "; " + slots.getInfo();
+		log += "|| " + slots.getInfo();
 		
 		return log;
 	}
 	
-	private class Slots {
-		private Item[] items = new Item[2];
+	class Slots {
+		private Slot[] slots = new Slot[2];
+		
+		public Slots() {
+			for(int i = 0; i < slots.length; i++) {
+				slots[i] = new Slot();
+			}
+		}
 		
 		public String[] getItemsNames() {
-			int count = numberOfItems();
+			int count = getNumberOfItems();
 			String[] names = new String[count];
 			int i = 0;
 			
-			for(Item item: items) {
-				if (item != null) {
-					names[i++] = item.getName();
+			for(Slot slot: slots) {
+				if (slot.hasItem()) {
+					names[i++] = slot.getItemName();
 				}
 			}
 			
 			return names;
 		}
 		
-		private int numberOfItems() {
+		public int getNumberOfSlots() {
+			return slots.length;
+		}
+		
+		public int getNumberOfItems() {
 			int count = 0;
-			for(Item item: items) {
-				if(item != null) {
+			for(Slot slot: slots) {
+				if(slot.hasItem()) {
 					count++;
 				}
 			}
 			return count;
 		}
 		
-		public void addItem(Item item) {
-			for (int i = 0; i < items.length; i++) {
-				if (items[i] == null) {
-					items[i] = item;
-					break;
-				}
+		/**
+		 * Set item to slot
+		 * @param item - item or null
+		 * @param slotNumber - slot number [0; getNumberOfSlots())
+		 */
+		public void set(Item item, int slotNumber) {
+			if (slotNumber < getNumberOfSlots()) {
+				slots[slotNumber].set(item);
 			}
-			agility += item.getAgility();
-			intelligence += item.getIntelligence();
-			strength += item.getStrength();
 		}
 		
 		public void removeItem(String name) {
-			for (int i = 0; i < items.length; i++) {
-				if (items[i] != null && items[i].getName().equals(name)) {
-					agility -= items[i].getAgility();
-					intelligence -= items[i].getIntelligence();
-					strength -= items[i].getStrength();
-					items[i] = null;
+			for (Slot slot : slots) {
+				if (slot.hasItem() && slot.getItemName().equals(name)) {
+					slot.removeItem();
 					break;
 				}
 			}
 		}
 		
 		public String getInfo() {
-			String log = "";
-			for (int i = 0; i < items.length; i++) {
-				log += "Item №" + (i + 1) + ": "
-					   + ((items[i] == null) ? "<empty>" : items[i].getName())
-					   + ((i < items.length - 1) ? "; " : "");
+			StringBuilder format = new StringBuilder("Items: [");
+			String[] info = new String[getNumberOfSlots()];
+			
+			for (int i = 0; i < info.length; i++) {
+				format.append("%20s");
+				info[i] = slots[i].getInfo();
+				if(i < info.length - 1) {
+					format.append(",");
+				}
 			}
-			return log;
+			
+			format.append("]");
+			return String.format(format.toString(), (Object[]) info);
+		}
+		
+		private class Slot {
+			private Item item;
+			
+			public String getInfo() {
+				return isEmpty() ? "<empty>" : item.getName();
+			}
+			
+			public String getItemName() {
+				return item.getName();
+			}
+			
+			public boolean hasItem() {
+				return !isEmpty();
+			}
+			
+			public boolean isEmpty() {
+				return item == null;
+			}
+			
+			public void set(Item item) {
+				if (!isEmpty()) {
+					removeItem();
+				}
+				setItem(item);
+			}
+			
+			public void removeItem() {
+				agility -= item.getAgility();
+				intelligence -= item.getIntelligence();
+				strength -= item.getStrength();
+				item = null;
+				computeStrikePower();
+			}
+			
+			private void setItem(Item item) {
+				this.item = item;
+				if (!isEmpty()) {
+					agility += this.item.getAgility();
+					intelligence += this.item.getIntelligence();
+					strength += this.item.getStrength();
+					computeStrikePower();
+				}
+			}
 		}
 	}
 }

@@ -1,7 +1,6 @@
 package ua.itea.lesson10.tasks;
 
 public class Duel {
-	private float dropItemChance = 20.f;
 	private Pudge pudge1;
 	private Pudge pudge2;
 	
@@ -29,11 +28,14 @@ public class Duel {
 	}
 	
 	private void tryDropItem(Pudge pudge) {
+		float dropItemChance = 20.f;
+		
 		if(Math.random() < dropItemChance / 100.f) {
-			String[] itemNames = pudge.getItemsNames();
+			Pudge.Slots slots = pudge.getSlots();
+			String[] itemNames = slots.getItemsNames();
 			
 			if (itemNames.length != 0) {
-				pudge.removeItem(itemNames[(int)(Math.random() * itemNames.length)]);
+				slots.removeItem(itemNames[(int)(Math.random() * itemNames.length)]);
 			}
 		}
 	}
