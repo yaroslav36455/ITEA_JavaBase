@@ -6,32 +6,42 @@ public class Pudge {
 	private int intelligence;
 	private int strength;
 	private int strikePower;
-	private ItemCase itemCase;
+	private Slots slots;
 	
 	public Pudge(int health, int agility, int intelligence, int strength) {
 		this.health = health;
 		this.agility = agility;
 		this.intelligence = intelligence;
 		this.strength = strength;
-		itemCase = new ItemCase();
+		slots = new Slots();
 		computeStrikePower();
 	}
 	
-	public String[] getItemsName() {
-		return itemCase.getItemNames();
+	public Slots getSlots() {
+		return slots;
 	}
 	
 	public boolean isAlive() {
 		return health > 0;
 	}
 	
+	public String[] getItemsNames() {
+		return slots.getItemsNames();
+	}
+	
+	public void addItemOrNull(Item item) {
+		if(item != null) {
+			addItem(item);
+		}
+	}
+	
 	public void addItem(Item item) {		
-		itemCase.addItem(item);
+		slots.addItem(item);
 		computeStrikePower();
 	}
 	
 	public void removeItem(String name) {
-		itemCase.removeItem(name);
+		slots.removeItem(name);
 		computeStrikePower();
 	}
 	
@@ -43,6 +53,18 @@ public class Pudge {
 		return health;
 	}
 	
+	public int getAgility() {
+		return agility;
+	}
+	
+	public int getIntelligence() {
+		return intelligence;
+	}
+	
+	public int getStrength() {
+		return strength;
+	}
+	
 	public int getStrikePower() {
 		return strikePower;
 	}
@@ -52,21 +74,20 @@ public class Pudge {
 	}
 	
 	public String getInfo() {
-		String log = "Health: " + health
-					 + "; Agility: " + agility
-					 + "; Intelligence: " + intelligence
-					 + "; Strength: " + strength
-					 + "; Strike Power: " + strikePower;
+		String log = String.format("Health %4d|Agility %3d|Intelligence %3d|"
+								   + "Strength %3d|Strike Power %3d",
+								   health, agility, intelligence,
+								   strength, strikePower);
 		
-		log += "; " + itemCase.getInfo();
+		log += "; " + slots.getInfo();
 		
 		return log;
 	}
 	
-	private class ItemCase {
+	private class Slots {
 		private Item[] items = new Item[2];
 		
-		public String[] getItemNames() {
+		public String[] getItemsNames() {
 			int count = numberOfItems();
 			String[] names = new String[count];
 			int i = 0;

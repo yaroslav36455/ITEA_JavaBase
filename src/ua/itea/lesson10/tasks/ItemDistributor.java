@@ -9,26 +9,31 @@ public class ItemDistributor {
 			ItemRand.BLADES_OF_ATTACK
 			};
 	
+	float weightSum;
 	float dropChance;
-	
 	
 	/**
 	 * @param dropChance - item drop chance as a percentage [0.0; 100.0]. 
 	 */
 	public ItemDistributor(float dropChance) {
 		this.dropChance = dropChance;
+		weightSum = getWeightSum();
+	}
+	
+	public int numberOfItems() {
+		return base.length;
 	}
 	
 	Item getRandomItemOrNull() {
 		Item item = null;
-			
-		float randomRange = getWeightSum() * (100.f / dropChance);
-		float random = (float) (Math.random() * randomRange);
-		float hit = 0;
+		
+		float range = weightSum * (100.f / dropChance);
+		float hit = (float) (Math.random() * range);
+		float weightCounter = 0;
 		
 		for (ItemRand itemRand : base) {
-			hit += itemRand.weight();
-			if (random < hit) {
+			weightCounter += itemRand.weight();
+			if (hit < weightCounter) {
 				item = itemRand.item();
 				break;
 			}
