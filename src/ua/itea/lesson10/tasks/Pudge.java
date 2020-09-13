@@ -52,8 +52,23 @@ public class Pudge {
 		return log;
 	}
 	
-	class Slots {
-		private Slot[] slots = new Slot[2];
+	public enum Slot {
+		NUM_1(0),
+		NUM_2(1);
+		
+		private int num;
+		
+		Slot(int num) {
+			this.num = num;
+		}
+		
+		public int get() {
+			return num;
+		}
+	}
+	
+	public class Slots {
+		private Slot[] slots = new Slot[Pudge.Slot.values().length];
 		
 		public Slots() {
 			for(int i = 0; i < slots.length; i++) {
@@ -92,12 +107,10 @@ public class Pudge {
 		/**
 		 * Set item to slot
 		 * @param item - item or null
-		 * @param slotNumber - slot number [0; getNumberOfSlots())
+		 * @param slotNumber - slot number
 		 */
-		public void set(Item item, int slotNumber) {
-			if (slotNumber < getNumberOfSlots()) {
-				slots[slotNumber].set(item);
-			}
+		public void set(Item item, Pudge.Slot slotNumber) {
+			slots[slotNumber.get()].set(item);
 		}
 		
 		public void removeItem(String name) {

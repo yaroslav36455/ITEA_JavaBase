@@ -11,10 +11,10 @@ public class Main {
 		Pudge.Slots pudge1Slots = pudge1.getSlots();
 		Pudge.Slots pudge2Slots = pudge2.getSlots();
 		
-		pudge1Slots.set(dist.getRandomItemOrNull(), 0);
-		pudge1Slots.set(dist.getRandomItemOrNull(), 1);
-		pudge2Slots.set(dist.getRandomItemOrNull(), 0);
-		pudge2Slots.set(dist.getRandomItemOrNull(), 1);
+		pudge1Slots.set(dist.getRandomItemOrNull(), Pudge.Slot.NUM_1);
+		pudge1Slots.set(dist.getRandomItemOrNull(), Pudge.Slot.NUM_2);
+		pudge2Slots.set(dist.getRandomItemOrNull(), Pudge.Slot.NUM_1);
+		pudge2Slots.set(dist.getRandomItemOrNull(), Pudge.Slot.NUM_2);
 		
 		do {
 			System.out.println("P1: " + pudge1.getInfo());
