@@ -31,11 +31,10 @@ public class Duel {
 		float dropItemChance = 20.f;
 		
 		if(Math.random() < dropItemChance / 100.f) {
-			Pudge.Slots slots = pudge.getSlots();
-			String[] itemNames = slots.getItemsNames();
+			String[] itemNames = pudge.getItemsNames();
 			
 			if (itemNames.length != 0) {
-				slots.removeItem(itemNames[(int)(Math.random() * itemNames.length)]);
+				pudge.removeItem(itemNames[(int)(Math.random() * itemNames.length)]);
 			}
 		}
 	}

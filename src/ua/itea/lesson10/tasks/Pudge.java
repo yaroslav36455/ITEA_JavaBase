@@ -17,8 +17,16 @@ public class Pudge {
 		computeStrikePower();
 	}
 	
-	public Slots getSlots() {
-		return slots;
+	public Item set(Item item, Slot slotNumber) {
+		return slots.set(item, slotNumber);
+	}
+	
+	public Item removeItem(String name) {
+		return slots.removeItem(name);
+	}
+	
+	public String[] getItemsNames() {
+		return slots.getItemsNames();
 	}
 	
 	public boolean isAlive() {
@@ -67,7 +75,7 @@ public class Pudge {
 		}
 	}
 	
-	public class Slots {
+	private class Slots {
 		private Slot[] slots = new Slot[Pudge.Slot.values().length];
 		
 		public Slots() {
@@ -114,13 +122,14 @@ public class Pudge {
 			return slots[slotNumber.get()].set(item);
 		}
 		
-		public void removeItem(String name) {
+		public Item removeItem(String name) {
+			Item removedItem = null;
 			for (Slot slot : slots) {
 				if (slot.hasItem() && slot.getItemName().equals(name)) {
-					slot.removeItem();
-					break;
+					removedItem = slot.removeItem();
 				}
 			}
+			return removedItem;
 		}
 		
 		public String getInfo() {
