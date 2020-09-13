@@ -105,12 +105,13 @@ public class Pudge {
 		}
 		
 		/**
-		 * Set item to slot
+		 * Set or remove item
 		 * @param item - item or null
 		 * @param slotNumber - slot number
+		 * @return old item or null
 		 */
-		public void set(Item item, Pudge.Slot slotNumber) {
-			slots[slotNumber.get()].set(item);
+		public Item set(Item item, Pudge.Slot slotNumber) {
+			return slots[slotNumber.get()].set(item);
 		}
 		
 		public void removeItem(String name) {
@@ -157,28 +158,40 @@ public class Pudge {
 				return item == null;
 			}
 			
-			public void set(Item item) {
-				if (!isEmpty()) {
-					removeItem();
-				}
-				setItem(item);
-			}
-			
-			public void removeItem() {
-				agility -= item.getAgility();
-				intelligence -= item.getIntelligence();
-				strength -= item.getStrength();
-				item = null;
+			public Item set(Item newItem) {
+				Item oldItem = this.item;
+				item = newItem;
+				
+				subStats(oldItem);
+				addStats(newItem);
+				
 				computeStrikePower();
+				return oldItem;
 			}
 			
-			private void setItem(Item item) {
-				this.item = item;
-				if (!isEmpty()) {
-					agility += this.item.getAgility();
-					intelligence += this.item.getIntelligence();
-					strength += this.item.getStrength();
-					computeStrikePower();
+			public Item removeItem() {
+				Item oldItem = item;
+				item = null;
+				
+				subStats(oldItem);
+				
+				computeStrikePower();
+				return oldItem;
+			}
+			
+			private void subStats(Item item) {
+				if (item != null) {
+					agility -= item.getAgility();
+					intelligence -= item.getIntelligence();
+					strength -= item.getStrength();
+				}
+			}
+			
+			private void addStats(Item item) {
+				if (item != null) {
+					agility += item.getAgility();
+					intelligence += item.getIntelligence();
+					strength += item.getStrength();
 				}
 			}
 		}
