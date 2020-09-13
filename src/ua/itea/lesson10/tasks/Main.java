@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
 		Pudge pudge1 = new Pudge(700, 24, 11, 35);
-		Pudge pudge2 = new Pudge(650, 25, 13, 32);
+		Pudge pudge2 = new Pudge(650, 27, 13, 32);
 		Duel duel = new Duel(pudge1, pudge2);
 		
 		ItemDistributor dist = new ItemDistributor(70.0f);
