@@ -3,10 +3,8 @@ package ua.itea.lesson10.tasks;
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
-		Pudge pudge1 = new Pudge(700, 24, 11, 35);
-		Pudge pudge2 = new Pudge(675, 27, 13, 33);
-		Duel duel = new Duel(pudge1, pudge2);
-		
+		Pudge pudge1 = new Pudge(600, 24, 11, 45);
+		Pudge pudge2 = new Pudge(575, 27, 13, 43);
 		ItemDistributor dist = new ItemDistributor(70.0f);
 		
 		for (Pudge.Slot slotNumber : Pudge.Slot.values()) {
@@ -24,7 +22,17 @@ public class Main {
 			
 			Thread.sleep(1000);
 			
-		} while (duel.continueDuel());
+			pudge1.setHealth(pudge1.getHealth() - pudge2.getStrikePower());
+			tryDropItem(pudge1);
+			
+			if (!pudge1.isAlive()) {
+				break;
+			}
+			
+			pudge2.setHealth(pudge2.getHealth() - pudge1.getStrikePower());
+			tryDropItem(pudge2);
+			
+		} while (pudge1.isAlive() && pudge2.isAlive());
 		
 		System.out.println("P1: " + pudge1.getInfo());
 		System.out.println("P2: " + pudge2.getInfo());
@@ -34,6 +42,18 @@ public class Main {
 			System.out.println("P1 won");
 		} else {
 			System.out.println("P2 won");
+		}
+	}
+	
+	private static void tryDropItem(Pudge pudge) {
+		float dropItemChance = 20.f;
+		
+		if(Math.random() < dropItemChance / 100.f) {
+			String[] itemNames = pudge.getItemsNames();
+			
+			if (itemNames.length != 0) {
+				pudge.removeItem(itemNames[(int)(Math.random() * itemNames.length)]);
+			}
 		}
 	}
 }
