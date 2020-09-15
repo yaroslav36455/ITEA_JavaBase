@@ -60,7 +60,7 @@ public class FigureContainer {
 		System.out.println("┠─┼─────────┼─────────┼─────────┼──────┨");
 		String format = "┃%d│%-9s│%.3e│%.3e│%-6s┃\n";
 		
-		int counter = 0;
+		int counter = 1;
 		
 		for (int i = 0; i < amountOfCircles; i++) {
 			System.out.printf(format, counter++,
