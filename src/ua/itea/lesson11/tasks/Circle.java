@@ -1,30 +1,15 @@
 package ua.itea.lesson11.tasks;
 
-public class Circle {
-	private double perim;
-	private double area;
-	private String name = "Circle";
-	private String color;
+public class Circle extends Figure {
 	
 	public Circle(double radius, String color) {
+		super(color);
 		reset(radius);
-		this.color = color; 
 	}
 	
-	String getName() {
-		return name;
-	}
-	
-	double getPerimeter() {
-		return perim;
-	}
-	
-	double getArea() {
-		return area;
-	}
-	
-	String getColor() {
-		return color;
+	@Override
+	public String getName() {
+		return "Circle";
 	}
 	
 	public void reset(double radius) {
@@ -33,10 +18,10 @@ public class Circle {
 	}
 	
 	private void computePerimeter(double radius) {
-		perim = radius * 2.0 * Math.PI;
+		setPerimeter(radius * 2.0 * Math.PI);
 	}
 	
 	private void computeArea(double radius) {
-		area = radius * radius * Math.PI;
+		setArea(radius * radius * Math.PI);
 	}
 }

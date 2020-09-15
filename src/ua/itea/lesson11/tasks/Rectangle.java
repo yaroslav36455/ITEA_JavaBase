@@ -1,35 +1,20 @@
 package ua.itea.lesson11.tasks;
 
-public class Rectangle {
-	private double perim;
-	private double area;
-	private String name = "Rectangle";
-	private String color;
+public class Rectangle extends Figure {
 	
 	public Rectangle(double side, String color) {
+		super(color);
 		reset(side);
-		this.color = color;
 	}
 	
 	public Rectangle(double sideA, double sideB, String color) {
+		super(color);
 		reset(sideA, sideB);
-		this.color = color;
 	}
 	
-	String getName() {
-		return name;
-	}
-	
-	double getPerimeter() {
-		return perim;
-	}
-	
-	double getArea() {
-		return area;
-	}
-	
-	String getColor() {
-		return color;
+	@Override
+	public String getName() {
+		return "Rectangle";
 	}
 	
 	public void reset(double side) {
@@ -42,10 +27,10 @@ public class Rectangle {
 	}
 	
 	private void computePerimeter(double sideA, double sideB) {
-		perim = (sideA + sideB) * 2;
+		setPerimeter((sideA + sideB) * 2);
 	}
 	
 	private void computeArea(double sideA, double sideB) {
-		area = sideA * sideB;
+		setArea(sideA * sideB);
 	}
 }
