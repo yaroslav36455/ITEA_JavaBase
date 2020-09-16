@@ -1,28 +1,33 @@
 package ua.itea.lesson11.tasks;
 
 public class FigureContainer {
-	private Circle[] circles = new Circle[3];
-	private Rectangle[] rectangles = new Rectangle[3];
-	private Triangle[] triangles = new Triangle[3];
+	private static int maxOfCircles = 3;
+	private static int maxOfRectangles = 3;
+	private static int maxOfTriangles = 3;
+	private Figure[] figures = new Figure[maxOfCircles + maxOfRectangles + maxOfTriangles];
 	private int amountOfCircles = 0;
 	private int amountOfRectangles = 0;
 	private int amountOfTriangles = 0;
+	private int amountOfFigures = 0;
 
 	public void add(Circle circle) {		
-		if (amountOfCircles < circles.length) {
-			circles[amountOfCircles++] = circle;
+		if (amountOfCircles < maxOfCircles) {
+			figures[amountOfFigures++] = circle;
+			amountOfCircles++;
 		}
 	}
 
 	public void add(Rectangle rectangle) {
-		if (amountOfRectangles < rectangles.length) {
-			rectangles[amountOfRectangles++] = rectangle;
+		if (amountOfRectangles < maxOfRectangles) {
+			figures[amountOfFigures++] = rectangle;
+			amountOfRectangles++;
 		}
 	}
 
 	public void add(Triangle triangle) {
-		if (amountOfTriangles < triangles.length) {
-			triangles[amountOfTriangles++] = triangle;
+		if (amountOfTriangles < maxOfTriangles) {
+			figures[amountOfFigures++] = triangle;
+			amountOfTriangles++;
 		}
 	}
 
@@ -31,21 +36,21 @@ public class FigureContainer {
 	}
 
 	public boolean isFullOfCircles() {
-		return amountOfCircles == circles.length;
+		return amountOfCircles == maxOfCircles;
 	}
 
 	public boolean isFullOfRectangles() {
-		return amountOfRectangles == rectangles.length;
+		return amountOfRectangles == maxOfRectangles;
 	}
 
 	public boolean isFullOfTriangles() {
-		return amountOfTriangles == triangles.length;
+		return amountOfTriangles == maxOfTriangles;
 	}
 
 	public void printFullnessInfo() {
-		System.out.println("Circles: " + amountOfCircles + "/" + circles.length
-						   + "; Rectangles: " + amountOfRectangles + "/" + rectangles.length
-						   + "; Triangles: " + amountOfTriangles + "/" + triangles.length);
+		System.out.println("Circles: " + amountOfCircles + "/" + maxOfCircles
+						   + "; Rectangles: " + amountOfRectangles + "/" + maxOfRectangles
+						   + "; Triangles: " + amountOfTriangles + "/" + maxOfTriangles);
 	}
 	
 	public void printFiguresInfo() {
@@ -62,28 +67,12 @@ public class FigureContainer {
 		
 		int counter = 1;
 		
-		for (int i = 0; i < amountOfCircles; i++) {
+		for (int i = 0; i < amountOfFigures; i++) {
 			System.out.printf(format, counter++,
-									  circles[i].getName(),
-									  circles[i].getPerimeter(),
-									  circles[i].getArea(),
-									  circles[i].getColor());
-		}
-		
-		for (int i = 0; i < amountOfRectangles; i++) {
-			System.out.printf(format, counter++,
-									  rectangles[i].getName(),
-									  rectangles[i].getPerimeter(),
-									  rectangles[i].getArea(),
-									  rectangles[i].getColor());
-		}
-		
-		for (int i = 0; i < amountOfTriangles; i++) {
-			System.out.printf(format, counter++,
-									  triangles[i].getName(),
-									  triangles[i].getPerimeter(),
-									  triangles[i].getArea(),
-									  triangles[i].getColor());
+									  figures[i].getName(),
+									  figures[i].getPerimeter(),
+									  figures[i].getArea(),
+									  figures[i].getColor());
 		}
 		
 		System.out.println("┗━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━┛");
