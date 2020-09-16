@@ -25,11 +25,6 @@ public class Figure {
 		return color;
 	}
 	
-	public String getInfo() {
-		return String.format("Name: %-9s; Perimeter: %.3e; Area: %.3e; Color: %-6s",
-							 getName(), getPerimeter(), getArea(), getColor());
-	}
-	
 	protected void setPerimeter(double perim) {
 		this.perim = perim;
 	}
