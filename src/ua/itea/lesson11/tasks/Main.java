@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		FigureFactory factory = new FigureFactory(scanner);
-		FigureContainer container = new FigureContainer();
+		FigureContainer container = new FigureContainer(3, 3, 3);
 		RequesterInteger requester;
 		BoundsInteger menuItems = new BoundsInteger();
 		

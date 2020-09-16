@@ -1,14 +1,21 @@
 package ua.itea.lesson11.tasks;
 
 public class FigureContainer {
-	private static int maxOfCircles = 3;
-	private static int maxOfRectangles = 3;
-	private static int maxOfTriangles = 3;
-	private Figure[] figures = new Figure[maxOfCircles + maxOfRectangles + maxOfTriangles];
+	private int maxOfCircles;
+	private int maxOfRectangles;
+	private int maxOfTriangles;
+	private Figure[] figures;
 	private int amountOfCircles = 0;
 	private int amountOfRectangles = 0;
 	private int amountOfTriangles = 0;
 	private int amountOfFigures = 0;
+	
+	public FigureContainer(int maxOfCircles, int maxOfRectangles, int maxOfTriangles) {
+		this.maxOfCircles = maxOfCircles;
+		this.maxOfRectangles = maxOfRectangles;
+		this.maxOfTriangles = maxOfTriangles;
+		figures = new Figure[maxOfCircles + maxOfRectangles + maxOfTriangles];
+	}
 
 	public void add(Circle circle) {		
 		if (amountOfCircles < maxOfCircles) {
