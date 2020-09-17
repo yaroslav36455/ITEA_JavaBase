@@ -1,4 +1,6 @@
-package ua.itea.lesson11.tasks;
+package ua.itea.lesson11.tasks.figure;
+
+import ua.itea.lesson11.tasks.Angle;
 
 public class Triangle extends Figure {
 	

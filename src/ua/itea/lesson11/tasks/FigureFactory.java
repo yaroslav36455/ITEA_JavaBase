@@ -2,6 +2,10 @@ package ua.itea.lesson11.tasks;
 
 import java.util.Scanner;
 
+import ua.itea.lesson11.tasks.figure.Circle;
+import ua.itea.lesson11.tasks.figure.Rectangle;
+import ua.itea.lesson11.tasks.figure.Triangle;
+
 public class FigureFactory {
 	private BoundsDouble bounds;
 	private RequesterDouble requester;

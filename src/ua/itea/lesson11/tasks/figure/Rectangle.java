@@ -1,4 +1,4 @@
-package ua.itea.lesson11.tasks;
+package ua.itea.lesson11.tasks.figure;
 
 public class Rectangle extends Figure {
 	

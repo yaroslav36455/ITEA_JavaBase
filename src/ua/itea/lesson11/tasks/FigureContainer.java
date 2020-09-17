@@ -1,5 +1,10 @@
 package ua.itea.lesson11.tasks;
 
+import ua.itea.lesson11.tasks.figure.Figure;
+import ua.itea.lesson11.tasks.figure.Circle;
+import ua.itea.lesson11.tasks.figure.Rectangle;
+import ua.itea.lesson11.tasks.figure.Triangle;
+
 public class FigureContainer {
 	private int maxOfCircles;
 	private int maxOfRectangles;
