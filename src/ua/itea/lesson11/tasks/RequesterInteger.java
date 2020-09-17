@@ -12,15 +12,15 @@ public class RequesterInteger {
 		setBounds(bounds);
 	}
 	
-	void setScanner(Scanner scanner) {
+	public void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
 	
-	void setBounds(BoundsInteger bounds) {
+	public void setBounds(BoundsInteger bounds) {
 		this.bounds = bounds;
 	}
 	
-	int next(String label) {
+	public int next(String label) {
 		Pattern patt = Pattern.compile("[^\\n]*\\n");
 		int value = 0;
 		

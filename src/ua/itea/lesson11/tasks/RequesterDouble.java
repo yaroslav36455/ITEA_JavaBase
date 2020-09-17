@@ -12,15 +12,15 @@ public class RequesterDouble {
 		setBounds(bounds);
 	}
 	
-	void setScanner(Scanner scanner) {
+	public void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
 	
-	void setBounds(BoundsDouble bounds) {
+	public void setBounds(BoundsDouble bounds) {
 		this.bounds = bounds;
 	}
 	
-	double next(String label) {
+	public double next(String label) {
 		Pattern patt = Pattern.compile("[^\\n]*\\n");
 		double value = 0.0;
 		

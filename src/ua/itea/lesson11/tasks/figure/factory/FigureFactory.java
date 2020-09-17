@@ -1,10 +1,17 @@
-package ua.itea.lesson11.tasks;
+package ua.itea.lesson11.tasks.figure.factory;
 
 import java.util.Scanner;
 
 import ua.itea.lesson11.tasks.figure.Circle;
 import ua.itea.lesson11.tasks.figure.Rectangle;
 import ua.itea.lesson11.tasks.figure.Triangle;
+
+import ua.itea.lesson11.tasks.BoundsDouble;
+import ua.itea.lesson11.tasks.BoundsInteger;
+import ua.itea.lesson11.tasks.RequesterDouble;
+import ua.itea.lesson11.tasks.RequesterInteger;
+import ua.itea.lesson11.tasks.ColorRandomizer;
+import ua.itea.lesson11.tasks.Angle;
 
 public class FigureFactory {
 	private BoundsDouble bounds;

@@ -1,6 +1,7 @@
 package ua.itea.lesson11.tasks;
 
 import java.util.Scanner;
+import ua.itea.lesson11.tasks.figure.factory.FigureFactory;
 
 public class Main {
 	
