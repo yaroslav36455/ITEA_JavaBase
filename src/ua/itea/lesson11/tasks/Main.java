@@ -1,13 +1,18 @@
 package ua.itea.lesson11.tasks;
 
 import java.util.Scanner;
-import ua.itea.lesson11.tasks.figure.factory.FigureFactory;
+
+import ua.itea.lesson11.tasks.figure.factory.CircleFactory;
+import ua.itea.lesson11.tasks.figure.factory.RectangleFactory;
+import ua.itea.lesson11.tasks.figure.factory.TriangleFactory;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		FigureFactory factory = new FigureFactory(scanner);
+		CircleFactory circleFactory = new CircleFactory(scanner);
+		RectangleFactory rectangleFactory = new RectangleFactory(scanner);
+		TriangleFactory triangleFactory = new TriangleFactory(scanner);
 		FigureContainer container = new FigureContainer(3, 3, 3);
 		RequesterInteger requester;
 		BoundsInteger menuItems = new BoundsInteger();
@@ -34,7 +39,7 @@ public class Main {
 			case 1:
 				if (!container.isFullOfCircles()) {
 					System.out.println("1-Circle");
-					container.add(factory.createCircle());	
+					container.add(circleFactory.create());	
 				} else {
 					System.out.println("These figures are enough");
 				}
@@ -43,7 +48,7 @@ public class Main {
 			case 2:
 				if (!container.isFullOfRectangles()) {
 					System.out.println("2-Rectangle");
-					container.add(factory.createRectangle());
+					container.add(rectangleFactory.create());
 				} else {
 					System.out.println("These figures are enough");
 				}
@@ -52,7 +57,7 @@ public class Main {
 			case 3:
 				if (!container.isFullOfTriangles()) {
 					System.out.println("3-Triangle");
-					container.add(factory.createTriangle(scanner));
+					container.add(triangleFactory.create());
 				} else {
 					System.out.println("These figures are enough");
 				}
