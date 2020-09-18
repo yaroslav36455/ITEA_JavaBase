@@ -1,50 +1,33 @@
-package ua.itea.lesson11.tasks;
+package ua.itea.lesson11.tasks.figure.factory;
 
 import java.util.Scanner;
 
-import ua.itea.lesson11.tasks.figure.Circle;
-import ua.itea.lesson11.tasks.figure.Rectangle;
+import ua.itea.lesson11.tasks.Angle;
+import ua.itea.lesson11.tasks.BoundsDouble;
+import ua.itea.lesson11.tasks.BoundsInteger;
+import ua.itea.lesson11.tasks.RequesterDouble;
+import ua.itea.lesson11.tasks.RequesterInteger;
 import ua.itea.lesson11.tasks.figure.Triangle;
 
-public class FigureFactory {
+public class TriangleFactory extends FigureFactory {
 	private BoundsDouble bounds;
 	private RequesterDouble requester;
-	private ColorRandomizer colorRandomizer;
+	private RequesterInteger menuItemRequester;
 	
-	public FigureFactory(Scanner scanner) {
+	public TriangleFactory(Scanner scanner) {
 		bounds = new BoundsDouble();
 		bounds.exclude();
-		
 		requester = new RequesterDouble(scanner, bounds);
 		
-		colorRandomizer = new ColorRandomizer();
-	}
-	
-	public Circle createCircle() {
-		System.out.println("Enter the radius");
-		
-		bounds.set(0, Double.MAX_VALUE);
-		return new Circle(requester.next("Radius"),
-					      colorRandomizer.getRandomColor());
-	}
-	
-	public Rectangle createRectangle() {
-		System.out.println("Enter the two sides");
-		
-		bounds.set(0, Double.MAX_VALUE);
-		return new Rectangle(requester.next("Side A"),
-							 requester.next("Side B"),
-							 colorRandomizer.getRandomColor());
-	}
-	
-	public Triangle createTriangle(Scanner scanner) {
-		Triangle triangle = null;
-		RequesterInteger requester;
 		BoundsInteger menuItems = new BoundsInteger();
-
 		menuItems.set(1, 2);
 		menuItems.include();
-		requester = new RequesterInteger(scanner, menuItems);
+		menuItemRequester = new RequesterInteger(scanner, menuItems);
+	}
+
+	@Override
+	public Triangle create() {
+		Triangle triangle = null;
 		
 		System.out.println("┌─────────────────────────┐");
 		System.out.println("│ Computation Method Menu │");
@@ -52,9 +35,9 @@ public class FigureFactory {
 		System.out.println("│2-One side and two angles│");
 		System.out.println("└─────────────────────────┘");
 		
-		switch (requester.next("Select computation method")) {
+		switch (menuItemRequester.next("Select computation method")) {
 		case 1:
-			triangle = createTriangleTwoSidesAndAngle();
+			triangle = createTriangleTwoSidesAndOneAngle();
 			break;
 			
 		case 2:
@@ -69,7 +52,7 @@ public class FigureFactory {
 		return triangle;
 	}
 	
-	private Triangle createTriangleTwoSidesAndAngle() {
+	private Triangle createTriangleTwoSidesAndOneAngle() {
 		double sideA;
 		double sideB;
 		Angle angleAB = new Angle();
@@ -85,7 +68,7 @@ public class FigureFactory {
 		angleAB.setDegree(requester.next("Angle AB"));
 		
 		return new Triangle(sideA, sideB, angleAB,
-							colorRandomizer.getRandomColor());
+							getRandomColor());
 	}
 	
 	private Triangle createTriangleOneSideAndTwoAngles() {
@@ -104,7 +87,6 @@ public class FigureFactory {
 		bounds.set(0, 180 - angleAB.getDegree());
 		angleAC.setDegree(requester.next("Angle AC"));
 		
-		return new Triangle(sideA, angleAB, angleAC,
-							colorRandomizer.getRandomColor());
+		return new Triangle(sideA, angleAB, angleAC, getRandomColor());
 	}
 }

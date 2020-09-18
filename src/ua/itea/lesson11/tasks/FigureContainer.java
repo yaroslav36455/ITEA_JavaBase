@@ -1,104 +1,102 @@
 package ua.itea.lesson11.tasks;
 
 import ua.itea.lesson11.tasks.figure.Figure;
-import ua.itea.lesson11.tasks.figure.Circle;
-import ua.itea.lesson11.tasks.figure.Rectangle;
-import ua.itea.lesson11.tasks.figure.Triangle;
 
 public class FigureContainer {
-	private int maxOfCircles;
-	private int maxOfRectangles;
-	private int maxOfTriangles;
 	private Figure[] figures;
-	private int amountOfCircles = 0;
-	private int amountOfRectangles = 0;
-	private int amountOfTriangles = 0;
-	private int amountOfFigures = 0;
+	private int size = 0;
 	
-	public FigureContainer(int maxOfCircles, int maxOfRectangles, int maxOfTriangles) {
-		this.maxOfCircles = maxOfCircles;
-		this.maxOfRectangles = maxOfRectangles;
-		this.maxOfTriangles = maxOfTriangles;
-		figures = new Figure[maxOfCircles + maxOfRectangles + maxOfTriangles];
-	}
-
-	public void add(Circle circle) {		
-		if (amountOfCircles < maxOfCircles) {
-			figures[amountOfFigures++] = circle;
-			amountOfCircles++;
-		}
-	}
-
-	public void add(Rectangle rectangle) {
-		if (amountOfRectangles < maxOfRectangles) {
-			figures[amountOfFigures++] = rectangle;
-			amountOfRectangles++;
-		}
-	}
-
-	public void add(Triangle triangle) {
-		if (amountOfTriangles < maxOfTriangles) {
-			figures[amountOfFigures++] = triangle;
-			amountOfTriangles++;
-		}
-	}
-
-	public boolean isFull() {
-		return isFullOfCircles() && isFullOfRectangles() && isFullOfTriangles();
-	}
-
-	public boolean isFullOfCircles() {
-		return amountOfCircles == maxOfCircles;
-	}
-
-	public boolean isFullOfRectangles() {
-		return amountOfRectangles == maxOfRectangles;
-	}
-
-	public boolean isFullOfTriangles() {
-		return amountOfTriangles == maxOfTriangles;
-	}
-
-	public void printFullnessInfo() {
-		System.out.println("Circles: " + amountOfCircles + "/" + maxOfCircles
-						   + "; Rectangles: " + amountOfRectangles + "/" + maxOfRectangles
-						   + "; Triangles: " + amountOfTriangles + "/" + maxOfTriangles);
+	public FigureContainer(int capacity) {
+		figures = new Figure[capacity];
 	}
 	
-	public void printFiguresInfo() {
-		if(amountOfCircles == 0
-				&& amountOfRectangles == 0
-				&& amountOfTriangles == 0) {
-			System.out.println("No figures");
-			return;
+	public FigureContainer(Figure figure, Figure ...figures) {
+		add(figure, figures);
+	}
+	
+	public FigureContainer(FigureContainer container,
+						   FigureContainer ...containers) {
+		add(container, containers);
+	}
+	
+	public int size() {
+		return size;
+	}
+	
+	public int capacity() {
+		return figures.length;
+	}
+	
+	public void add(Figure figure, Figure ...figures) {
+		int count = figure == null ? 0 : 1;
+		
+		for (Figure fig : figures) {
+			if (fig != null) {
+				count++;
+			}
 		}
-		System.out.println("┏━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━┓");
-		System.out.println("┃№│Figure   │Perimeter│Area     │Color ┃");
-		System.out.println("┠─┼─────────┼─────────┼─────────┼──────┨");
-		String format = "┃%d│%-9s│%.3e│%.3e│%-6s┃\n";
 		
-		int counter = 1;
+		expandArrayCapacity(size() + count);
 		
-		for (int i = 0; i < amountOfFigures; i++) {
-			System.out.printf(format, counter++,
-									  figures[i].getName(),
-									  figures[i].getPerimeter(),
-									  figures[i].getArea(),
-									  figures[i].getColor());
+		addWithoutExpandingCapacity(figure);
+		addWithoutExpandingCapacity(figures);
+	}
+	
+	private void addWithoutExpandingCapacity(Figure ...figures) {
+		for (Figure fig : figures) {
+			if (fig != null) {
+				this.figures[size++] = fig;
+			}
+		}
+	}
+	
+	public void add(FigureContainer container, FigureContainer ...containers) {
+		int count = container.size();
+		for (FigureContainer cont : containers) {
+			count += cont.size();
 		}
 		
-		System.out.println("┗━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━┛");
+		expandArrayCapacity(size() + count);
+		
+		addWithoutExpandingCapacity(container.getFigures());
+		for (FigureContainer cont : containers) {
+			addWithoutExpandingCapacity(cont.getFigures());
+		}
 	}
-
-	public int amountOfCircles() {
-		return amountOfCircles;
+	
+	public boolean isEmpty() {
+		return size() == 0;
 	}
-
-	public int amountOfRectangles() {
-		return amountOfRectangles;
+	
+	public Figure[] getFigures() {
+		Figure[] figures = new Figure[size()];
+		
+		for (int i = 0; i < size(); i++) {
+			figures[i] = this.figures[i];
+		}
+		return figures;
 	}
-
-	public int amountOfTriangles() {
-		return amountOfTriangles;
+	
+	private void expandArrayCapacity(int newMinCapacity) {
+		if (figures == null) {
+			figures = new Figure[newMinCapacity];
+		} else if (newMinCapacity > capacity()) {
+			Figure[] newArray = new Figure[computeNewCapacity(newMinCapacity)];
+			
+			for (int i = 0; i < size(); i++) {
+				newArray[i] = figures[i];
+			}
+			figures = newArray;
+		}
+	}
+	
+	private int computeNewCapacity(int newMinCapacity) {
+		int capacity = capacity() == 0 ? 1 : capacity();
+		
+		while (capacity < newMinCapacity) {
+			capacity *= 2;
+		}
+		
+		return capacity;
 	}
 }
