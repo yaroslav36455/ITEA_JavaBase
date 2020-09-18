@@ -12,25 +12,22 @@ import ua.itea.lesson11.tasks.figure.Triangle;
 public class TriangleFactory extends FigureFactory {
 	private BoundsDouble bounds;
 	private RequesterDouble requester;
-	private Scanner scanner;
+	private RequesterInteger menuItemRequester;
 	
 	public TriangleFactory(Scanner scanner) {
-		this.scanner = scanner;
 		bounds = new BoundsDouble();
 		bounds.exclude();
-		
 		requester = new RequesterDouble(scanner, bounds);
+		
+		BoundsInteger menuItems = new BoundsInteger();
+		menuItems.set(1, 2);
+		menuItems.include();
+		menuItemRequester = new RequesterInteger(scanner, menuItems);
 	}
 
 	@Override
 	public Triangle create() {
 		Triangle triangle = null;
-		RequesterInteger requester;
-		BoundsInteger menuItems = new BoundsInteger();
-
-		menuItems.set(1, 2);
-		menuItems.include();
-		requester = new RequesterInteger(scanner, menuItems);
 		
 		System.out.println("┌─────────────────────────┐");
 		System.out.println("│ Computation Method Menu │");
@@ -38,9 +35,9 @@ public class TriangleFactory extends FigureFactory {
 		System.out.println("│2-One side and two angles│");
 		System.out.println("└─────────────────────────┘");
 		
-		switch (requester.next("Select computation method")) {
+		switch (menuItemRequester.next("Select computation method")) {
 		case 1:
-			triangle = createTriangleTwoSidesAndAngle();
+			triangle = createTriangleTwoSidesAndOneAngle();
 			break;
 			
 		case 2:
@@ -55,7 +52,7 @@ public class TriangleFactory extends FigureFactory {
 		return triangle;
 	}
 	
-	private Triangle createTriangleTwoSidesAndAngle() {
+	private Triangle createTriangleTwoSidesAndOneAngle() {
 		double sideA;
 		double sideB;
 		Angle angleAB = new Angle();
