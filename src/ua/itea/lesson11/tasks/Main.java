@@ -3,20 +3,18 @@ package ua.itea.lesson11.tasks;
 import java.util.Scanner;
 
 import ua.itea.lesson11.tasks.figure.Figure;
-import ua.itea.lesson11.tasks.figure.factory.CircleFactory;
-import ua.itea.lesson11.tasks.figure.factory.RectangleFactory;
-import ua.itea.lesson11.tasks.figure.factory.TriangleFactory;
+import ua.itea.lesson11.tasks.figure.collector.*;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		CircleFactory circleFactory = new CircleFactory(scanner);
-		RectangleFactory rectangleFactory = new RectangleFactory(scanner);
-		TriangleFactory triangleFactory = new TriangleFactory(scanner);
-		FigureContainer circleContainer = new FigureContainer(3);
-		FigureContainer rectangleContainer = new FigureContainer(3);
-		FigureContainer triangleContainer = new FigureContainer(3);
+		
+		int maxFigures = 3;
+		FigureCollector circleCollector = new CircleCollector(scanner, maxFigures);
+		FigureCollector rectangleCollector = new RectangleCollector(scanner, maxFigures);
+		FigureCollector triangleCollector = new TriangleCollector(scanner, maxFigures);
+
 		RequesterInteger requester;
 		BoundsInteger menuItems = new BoundsInteger();
 		
@@ -33,41 +31,30 @@ public class Main {
 		System.out.println("└───────────┘");
 		
 		boolean isQuit = false;
-		while(!isQuit && !(circleContainer.isFull()
-				&& rectangleContainer.isFull()
-				&& triangleContainer.isFull())) {
+		while(!isQuit && !(circleCollector.isFull()
+						   && rectangleCollector.isFull()
+						   && triangleCollector.isFull())) {
 			
 			System.out.println("---------------------------------------------");
-			System.out.println("Circles: " + circleContainer.size() + "/" + circleContainer.capacity()
-							   + "; Rectangles: " + rectangleContainer.size() + "/" + rectangleContainer.capacity()
-							   + "; Triangles: " + triangleContainer.size() + "/" + triangleContainer.capacity());
+			printFullness("Circles: ", circleCollector);
+			printFullness("; Rectangles: ", rectangleCollector);
+			printFullness("; Triangles: ", triangleCollector);
+			System.out.println();
 			
 			switch (requester.next("Select figure or exit")) {
 			case 1:
-				if (!circleContainer.isFull()) {
-					System.out.println("1-Circle");
-					circleContainer.add(circleFactory.create());
-				} else {
-					System.out.println("These figures are enough");
-				}
+				System.out.println("1-Circle");
+				circleCollector.addFigure();
 				break;
 				
 			case 2:
-				if (!rectangleContainer.isFull()) {
-					System.out.println("2-Rectangle");
-					rectangleContainer.add(rectangleFactory.create());
-				} else {
-					System.out.println("These figures are enough");
-				}
+				System.out.println("2-Rectangle");
+				rectangleCollector.addFigure();
 				break;	
 				
 			case 3:
-				if (!triangleContainer.isFull()) {
-					System.out.println("3-Triangle");
-					triangleContainer.add(triangleFactory.create());
-				} else {
-					System.out.println("These figures are enough");
-				}
+				System.out.println("3-Triangle");
+				triangleCollector.addFigure();
 				break;
 				
 			case 0:
@@ -82,31 +69,20 @@ public class Main {
 		}
 
 		System.out.println("═════════════════════════════════════════════");
-		System.out.println("Circles: " + circleContainer.size() + "/" + circleContainer.capacity()
-		   + "; Rectangles: " + rectangleContainer.size() + "/" + rectangleContainer.capacity()
-		   + "; Triangles: " + triangleContainer.size() + "/" + triangleContainer.capacity());
+		printFullness("Circles: ", circleCollector);
+		printFullness("; Rectangles: ", rectangleCollector);
+		printFullness("; Triangles: ", triangleCollector);
+		System.out.println();
 		System.out.println("---------------------------------------------");
 		
-		if(circleContainer.isEmpty() && rectangleContainer.isEmpty()
-				&& triangleContainer.isEmpty()) {
+		if(circleCollector.isEmpty() && rectangleCollector.isEmpty()
+				&& triangleCollector.isEmpty()) {
 			System.out.println("No figures");
 		} else {
-			int i = 0;
-			Figure[] figures = new Figure[circleContainer.size()
-			                              + rectangleContainer.size()
-			                              + triangleContainer.size()];
-			
-			for (Figure figure : circleContainer.getFigures()) {
-				figures[i++] = figure;
-			}
-			
-			for (Figure figure : rectangleContainer.getFigures()) {
-				figures[i++] = figure;
-			}
-			
-			for (Figure figure : triangleContainer.getFigures()) {
-				figures[i++] = figure;
-			}
+			/* common container for all figures */
+			FigureContainer common = new FigureContainer(circleCollector,
+														 rectangleCollector,
+														 triangleCollector);
 			
 				System.out.println("┏━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━┓");
 				System.out.println("┃№│Figure   │Perimeter│Area     │Color ┃");
@@ -115,7 +91,7 @@ public class Main {
 
 				int counter = 1;
 
-				for (Figure figure : figures) {
+				for (Figure figure : common.getFigures()) {
 					System.out.printf(format, counter++,
 									  figure.getName(),
 									  figure.getPerimeter(),
@@ -127,6 +103,10 @@ public class Main {
 		}
 		
 		scanner.close();
+	}
+	
+	private static void printFullness(String label, FigureCollector collector) {
+		System.out.print(label + collector.size() + "/" + collector.limit());
 	}
 
 }
