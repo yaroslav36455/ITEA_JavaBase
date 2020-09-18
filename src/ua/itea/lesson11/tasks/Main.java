@@ -9,18 +9,18 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		
+
 		int maxFigures = 3;
 		FigureCollector circleCollector = new CircleCollector(scanner, maxFigures);
 		FigureCollector rectangleCollector = new RectangleCollector(scanner, maxFigures);
 		FigureCollector triangleCollector = new TriangleCollector(scanner, maxFigures);
 
-		RequesterInteger requester;
+		RequesterInteger menuItemRequester;
 		BoundsInteger menuItems = new BoundsInteger();
 		
 		menuItems.set(0, 3);
 		menuItems.include();
-		requester = new RequesterInteger(scanner, menuItems);
+		menuItemRequester = new RequesterInteger(scanner, menuItems);
 		
 		System.out.println("┌───────────┐");
 		System.out.println("│ Main Menu │");
@@ -41,7 +41,7 @@ public class Main {
 			printFullness("; Triangles: ", triangleCollector);
 			System.out.println();
 			
-			switch (requester.next("Select figure or exit")) {
+			switch (menuItemRequester.next("Select figure or exit")) {
 			case 1:
 				System.out.println("1-Circle");
 				circleCollector.addFigure();
