@@ -8,6 +8,9 @@ public class FigureContainer {
 	private Figure[] figures;
 	private int size = 0;
 	
+	public FigureContainer() {
+	} 
+	
 	public FigureContainer(int capacity) {
 		expandArrayCapacity(capacity);
 	}
