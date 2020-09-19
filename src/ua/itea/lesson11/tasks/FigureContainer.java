@@ -52,15 +52,23 @@ public class FigureContainer {
 	
 	public void add(FigureContainer container, FigureContainer ...containers) {
 		int count = container.size();
+		
 		for (FigureContainer cont : containers) {
 			count += cont.size();
 		}
 		
 		expandArrayCapacity(size() + count);
 		
-		addWithoutExpandingCapacity(container.getFigures());
-		for (FigureContainer cont : containers) {
-			addWithoutExpandingCapacity(cont.getFigures());
+		addWithoutExpandingCapacity(container);
+		addWithoutExpandingCapacity(containers);
+	}
+	
+	private void addWithoutExpandingCapacity(FigureContainer ...containers) {
+		for (FigureContainer container : containers) {
+			Figure[] source = container.getFigures();
+			
+			System.arraycopy(source, 0, figures, size, source.length);
+			size += source.length;
 		}
 	}
 	
@@ -82,7 +90,7 @@ public class FigureContainer {
 			figures = new Figure[newMinCapacity];
 		} else if (newMinCapacity > capacity()) {
 			Figure[] newArray = new Figure[computeNewCapacity(newMinCapacity)];
-			
+
 			for (int i = 0; i < size(); i++) {
 				newArray[i] = figures[i];
 			}
