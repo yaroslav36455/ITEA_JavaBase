@@ -13,16 +13,20 @@ public class FigureContainer {
 	} 
 	
 	public FigureContainer(int capacity) {
-		expandArrayCapacity(capacity);
+		figures = new Figure[getCapacity(capacity)];
 	}
 	
 	public FigureContainer(Figure figure, Figure ...figures) {
-		add(figure, figures);
+		figures = new Figure[getCapacity(numberOfFigures(figure, figures))];
+		addWithoutExpandingCapacity(figure);
+		addWithoutExpandingCapacity(figures);
 	}
 	
 	public FigureContainer(FigureContainer container,
 						   FigureContainer ...containers) {
-		add(container, containers);
+		figures = new Figure[getCapacity(numberOfFigures(container, containers))];
+		addWithoutExpandingCapacity(container);
+		addWithoutExpandingCapacity(containers);
 	}
 	
 	public int size() {
@@ -99,20 +103,22 @@ public class FigureContainer {
 	}
 	
 	private void expandArrayCapacity(int newMinCapacity) {
-		if (figures == null) {
-			figures = new Figure[newMinCapacity];
-		} else if (newMinCapacity > capacity()) {
-			figures = Arrays.copyOf(figures, computeNewCapacity(newMinCapacity));
+		if (newMinCapacity > capacity()) {
+			figures = Arrays.copyOf(figures, getExpandedCapacity(newMinCapacity));
 		}
 	}
 	
-	private int computeNewCapacity(int newMinCapacity) {
-		int capacity = capacity() == 0 ? 1 : capacity();
+	private int getCapacity(int newMinCapacity) {
+		int capacity = 1;
 		
 		while (capacity < newMinCapacity) {
-			capacity *= 2;
+			capacity <<= 1;
 		}
 		
 		return capacity;
+	}
+	
+	private int getExpandedCapacity(int newMinCapacity) {
+		return getCapacity(capacity() == 0 ? 1 : capacity());
 	}
 }
