@@ -9,6 +9,7 @@ public class FigureContainer {
 	private int size = 0;
 	
 	public FigureContainer() {
+		figures = new Figure[0];
 	} 
 	
 	public FigureContainer(int capacity) {
