@@ -1,5 +1,7 @@
 package ua.itea.lesson11.tasks;
 
+import java.util.Arrays;
+
 import ua.itea.lesson11.tasks.figure.Figure;
 
 public class FigureContainer {
@@ -77,24 +79,14 @@ public class FigureContainer {
 	}
 	
 	public Figure[] getFigures() {
-		Figure[] figures = new Figure[size()];
-		
-		for (int i = 0; i < size(); i++) {
-			figures[i] = this.figures[i];
-		}
-		return figures;
+		return Arrays.copyOf(figures, size());
 	}
 	
 	private void expandArrayCapacity(int newMinCapacity) {
 		if (figures == null) {
 			figures = new Figure[newMinCapacity];
 		} else if (newMinCapacity > capacity()) {
-			Figure[] newArray = new Figure[computeNewCapacity(newMinCapacity)];
-
-			for (int i = 0; i < size(); i++) {
-				newArray[i] = figures[i];
-			}
-			figures = newArray;
+			figures = Arrays.copyOf(figures, computeNewCapacity(newMinCapacity));
 		}
 	}
 	
