@@ -34,6 +34,15 @@ public class FigureContainer {
 	}
 	
 	public void add(Figure figure, Figure ...figures) {
+		int count = numberOfFigures(figure, figures);
+		
+		expandArrayCapacity(size() + count);
+		
+		addWithoutExpandingCapacity(figure);
+		addWithoutExpandingCapacity(figures);
+	}
+	
+	private int numberOfFigures(Figure figure, Figure ...figures) {
 		int count = figure == null ? 0 : 1;
 		
 		for (Figure fig : figures) {
@@ -42,10 +51,7 @@ public class FigureContainer {
 			}
 		}
 		
-		expandArrayCapacity(size() + count);
-		
-		addWithoutExpandingCapacity(figure);
-		addWithoutExpandingCapacity(figures);
+		return count;
 	}
 	
 	private void addWithoutExpandingCapacity(Figure ...figures) {
@@ -57,16 +63,22 @@ public class FigureContainer {
 	}
 	
 	public void add(FigureContainer container, FigureContainer ...containers) {
+		int count = numberOfFigures(container, containers);
+		
+		expandArrayCapacity(size() + count);
+		
+		addWithoutExpandingCapacity(container);
+		addWithoutExpandingCapacity(containers);
+	}
+	
+	private int numberOfFigures(FigureContainer container, FigureContainer ...containers) {
 		int count = container.size();
 		
 		for (FigureContainer cont : containers) {
 			count += cont.size();
 		}
 		
-		expandArrayCapacity(size() + count);
-		
-		addWithoutExpandingCapacity(container);
-		addWithoutExpandingCapacity(containers);
+		return count;
 	}
 	
 	private void addWithoutExpandingCapacity(FigureContainer ...containers) {
