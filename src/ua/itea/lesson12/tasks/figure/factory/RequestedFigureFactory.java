@@ -6,7 +6,7 @@ import ua.itea.lesson12.tasks.BoundsDouble;
 import ua.itea.lesson12.tasks.RequesterDouble;
 
 public class RequestedFigureFactory extends FigureFactory {
-	protected RequesterDouble lengthRequester;
+	private RequesterDouble lengthRequester;
 	
 	public RequestedFigureFactory(Scanner scanner) {
 		BoundsDouble lengthBounds = new BoundsDouble();
@@ -14,5 +14,9 @@ public class RequestedFigureFactory extends FigureFactory {
 		lengthBounds.exclude();
 		
 		lengthRequester = new RequesterDouble(scanner, lengthBounds);
+	}
+	
+	protected double requestNextLength(String label) {
+		return lengthRequester.next(label);
 	}
 }

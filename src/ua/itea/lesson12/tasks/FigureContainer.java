@@ -137,7 +137,7 @@ public class FigureContainer {
 			result.append("┠─┼─────────┼─────────┼─────────┼──────┨\n");
 
 			for (Figure figure : getFigures()) {
-				result.append(String.format("┃%d│%-9s│%.3e│%.3e│%-6s┃\n",
+				result.append(String.format("┃%d│%-9s│%.3e│%.3e│%-6s┃%n",
 											counter++,
 								  	  		figure.getName(),
 								  	  		figure.getPerimeter(),

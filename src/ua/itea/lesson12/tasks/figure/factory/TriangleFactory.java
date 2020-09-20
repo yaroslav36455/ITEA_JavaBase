@@ -62,8 +62,8 @@ public class TriangleFactory extends RequestedFigureFactory {
 		System.out.println("Enter the two sides"
 		   		           + " and the angle between them in degrees");
 		
-		sideA = lengthRequester.next("Side A");
-		sideB = lengthRequester.next("Side B");
+		sideA = requestNextLength("Side A");
+		sideB = requestNextLength("Side B");
 		
 		angleBounds.set(0, 180);
 		angleAB.setDegree(angleRequester.next("Angle AB"));
@@ -78,7 +78,7 @@ public class TriangleFactory extends RequestedFigureFactory {
 		
 		System.out.println("Enter one side and two adjacent angles");
 		
-		sideA = lengthRequester.next("Side A");
+		sideA = requestNextLength("Side A");
 		
 		angleBounds.set(0, 180);
 		angleAB.setDegree(angleRequester.next("Angle AB"));

@@ -13,8 +13,8 @@ public class RectangleFactory extends RequestedFigureFactory {
 	public Rectangle create() {
 		System.out.println("Enter the two sides");
 		
-		return new Rectangle(lengthRequester.next("Side A"),
-							 lengthRequester.next("Side B"),
+		return new Rectangle(requestNextLength("Side A"),
+							 requestNextLength("Side B"),
 							 getRandomColor());
 	}
 }

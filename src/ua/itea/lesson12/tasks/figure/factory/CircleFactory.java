@@ -13,7 +13,7 @@ public class CircleFactory extends RequestedFigureFactory {
 	public Circle create() {
 		System.out.println("Enter the radius");
 		
-		return new Circle(lengthRequester.next("Radius"),
+		return new Circle(requestNextLength("Radius"),
 					      getRandomColor());
 	}
 }
