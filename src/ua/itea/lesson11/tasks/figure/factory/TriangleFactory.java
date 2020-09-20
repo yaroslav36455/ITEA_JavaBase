@@ -9,15 +9,17 @@ import ua.itea.lesson11.tasks.RequesterDouble;
 import ua.itea.lesson11.tasks.RequesterInteger;
 import ua.itea.lesson11.tasks.figure.Triangle;
 
-public class TriangleFactory extends FigureFactory {
-	private BoundsDouble bounds;
-	private RequesterDouble requester;
+public class TriangleFactory extends RequestedFigureFactory {
+	private BoundsDouble angleBounds;
+	private RequesterDouble angleRequester;
 	private RequesterInteger menuItemRequester;
 	
 	public TriangleFactory(Scanner scanner) {
-		bounds = new BoundsDouble();
-		bounds.exclude();
-		requester = new RequesterDouble(scanner, bounds);
+		super(scanner);
+		
+		angleBounds = new BoundsDouble();
+		angleBounds.exclude();
+		angleRequester = new RequesterDouble(scanner, angleBounds);
 		
 		BoundsInteger menuItems = new BoundsInteger();
 		menuItems.set(1, 2);
@@ -60,15 +62,13 @@ public class TriangleFactory extends FigureFactory {
 		System.out.println("Enter the two sides"
 		   		           + " and the angle between them in degrees");
 		
-		bounds.set(0, Double.MAX_VALUE);
-		sideA = requester.next("Side A");
-		sideB = requester.next("Side B");
+		sideA = lengthRequester.next("Side A");
+		sideB = lengthRequester.next("Side B");
 		
-		bounds.set(0, 180);
-		angleAB.setDegree(requester.next("Angle AB"));
+		angleBounds.set(0, 180);
+		angleAB.setDegree(angleRequester.next("Angle AB"));
 		
-		return new Triangle(sideA, sideB, angleAB,
-							getRandomColor());
+		return new Triangle(sideA, sideB, angleAB, getRandomColor());
 	}
 	
 	private Triangle createTriangleOneSideAndTwoAngles() {
@@ -78,14 +78,13 @@ public class TriangleFactory extends FigureFactory {
 		
 		System.out.println("Enter one side and two adjacent angles");
 		
-		bounds.set(0, Double.MAX_VALUE);
-		sideA = requester.next("Side A");
+		sideA = lengthRequester.next("Side A");
 		
-		bounds.set(0, 180);
-		angleAB.setDegree(requester.next("Angle AB"));
+		angleBounds.set(0, 180);
+		angleAB.setDegree(angleRequester.next("Angle AB"));
 
-		bounds.set(0, 180 - angleAB.getDegree());
-		angleAC.setDegree(requester.next("Angle AC"));
+		angleBounds.set(0, 180 - angleAB.getDegree());
+		angleAC.setDegree(angleRequester.next("Angle AC"));
 		
 		return new Triangle(sideA, angleAB, angleAC, getRandomColor());
 	}
