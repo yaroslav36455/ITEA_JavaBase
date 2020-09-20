@@ -32,4 +32,10 @@ public class Figure {
 	protected void setArea(double area) {
 		this.area = area;
 	}
+
+	@Override
+	public String toString() {
+		return "Figure [getName()=" + getName() + ", getPerimeter()=" + getPerimeter()
+				+ ", getArea()=" + getArea() + ", getColor()=" + getColor() + "]";
+	}
 }
