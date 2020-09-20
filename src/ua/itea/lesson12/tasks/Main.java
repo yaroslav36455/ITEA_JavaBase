@@ -1,8 +1,6 @@
 package ua.itea.lesson12.tasks;
 
 import java.util.Scanner;
-
-import ua.itea.lesson12.tasks.figure.Figure;
 import ua.itea.lesson12.tasks.figure.collector.*;
 
 public class Main {
@@ -75,32 +73,10 @@ public class Main {
 		System.out.println();
 		System.out.println("---------------------------------------------");
 		
-		if(circleCollector.isEmpty() && rectangleCollector.isEmpty()
-				&& triangleCollector.isEmpty()) {
-			System.out.println("No figures");
-		} else {
-			/* common container for all figures */
-			FigureContainer common = new FigureContainer(circleCollector,
-														 rectangleCollector,
-														 triangleCollector);
-			
-				System.out.println("┏━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━┓");
-				System.out.println("┃№│Figure   │Perimeter│Area     │Color ┃");
-				System.out.println("┠─┼─────────┼─────────┼─────────┼──────┨");
-				String format = "┃%d│%-9s│%.3e│%.3e│%-6s┃\n";
-
-				int counter = 1;
-
-				for (Figure figure : common.getFigures()) {
-					System.out.printf(format, counter++,
-									  figure.getName(),
-									  figure.getPerimeter(),
-									  figure.getArea(),
-									  figure.getColor());
-				}
-
-				System.out.println("┗━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━┛");
-		}
+		/* common container for all figures */
+		System.out.println(new FigureContainer(circleCollector,
+											   rectangleCollector,
+											   triangleCollector));
 		
 		scanner.close();
 	}

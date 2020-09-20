@@ -123,4 +123,32 @@ public class FigureContainer {
 		
 		return capacity;
 	}
+	
+	@Override
+	public String toString() {
+		if(isEmpty()) {
+			return "No figures";
+		} else {
+			StringBuffer result = new StringBuffer();
+			int counter = 1;
+			
+			result.append("┏━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━┓\n");
+			result.append("┃№│Figure   │Perimeter│Area     │Color ┃\n");
+			result.append("┠─┼─────────┼─────────┼─────────┼──────┨\n");
+
+			for (Figure figure : getFigures()) {
+				result.append(String.format("┃%d│%-9s│%.3e│%.3e│%-6s┃\n",
+											counter++,
+								  	  		figure.getName(),
+								  	  		figure.getPerimeter(),
+								  	  		figure.getArea(),
+								  	  		figure.getColor()));
+			}
+
+			result.append("┗━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━┛");
+
+			result.trimToSize();
+			return result.toString();
+		}
+	}
 }
