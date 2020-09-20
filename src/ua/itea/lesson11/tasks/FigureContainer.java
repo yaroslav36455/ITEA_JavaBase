@@ -110,21 +110,17 @@ public class FigureContainer {
 	
 	private void expandArrayCapacity(int newMinCapacity) {
 		if (newMinCapacity > capacity()) {
-			figures = Arrays.copyOf(figures, getExpandedCapacity(newMinCapacity));
+			figures = Arrays.copyOf(figures, getCapacity(newMinCapacity));
 		}
 	}
 	
 	private int getCapacity(int newMinCapacity) {
-		int capacity = 1;
+		int capacity = (figures == null || capacity() == 0) ? 1 : capacity();
 		
 		while (capacity < newMinCapacity) {
 			capacity <<= 1;
 		}
 		
 		return capacity;
-	}
-	
-	private int getExpandedCapacity(int newMinCapacity) {
-		return getCapacity(capacity() == 0 ? 1 : capacity());
 	}
 }
