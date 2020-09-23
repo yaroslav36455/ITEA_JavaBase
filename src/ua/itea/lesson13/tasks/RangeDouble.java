@@ -1,12 +1,18 @@
 package ua.itea.lesson13.tasks;
 
-public class BoundsInteger {
-	private int min = Integer.MIN_VALUE;
-	private int max = Integer.MAX_VALUE;
+import java.math.BigDecimal;
+import java.math.MathContext;
+
+public class RangeDouble {
+	private double min = Double.NEGATIVE_INFINITY;
+	private double max = Double.POSITIVE_INFINITY;
 	private boolean isIncludeMin = true;
 	private boolean isIncludeMax = true;
 	
-	public void set(int boundFirst, int boundSecond) {
+	public void set(double boundFirst, double boundSecond) {
+		boundFirst  = round(boundFirst);
+		boundSecond = round(boundSecond);
+		
 		if(boundFirst < boundSecond) {
 			min = boundFirst;
 			max = boundSecond;
@@ -56,11 +62,18 @@ public class BoundsInteger {
 		return isIncludeMax;
 	}
 	
-	public int getMin() {
+	public double getMin() {
 		return min;
 	}
 	
-	public int getMax() {
+	public double getMax() {
 		return max;
+	}
+	
+	private double round(double d) {
+		BigDecimal value = BigDecimal.valueOf(d);
+		BigDecimal zero = BigDecimal.valueOf(0);
+		
+		return value.subtract(zero, new MathContext(15)).doubleValue();
 	}
 }

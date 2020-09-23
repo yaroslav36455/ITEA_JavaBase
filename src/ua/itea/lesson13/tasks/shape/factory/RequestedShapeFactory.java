@@ -2,18 +2,18 @@ package ua.itea.lesson13.tasks.shape.factory;
 
 import java.util.Scanner;
 
-import ua.itea.lesson13.tasks.BoundsDouble;
+import ua.itea.lesson13.tasks.RangeDouble;
 import ua.itea.lesson13.tasks.RequesterDouble;
 
 public class RequestedShapeFactory extends ShapeFactory {
 	private RequesterDouble lengthRequester;
 	
 	public RequestedShapeFactory(Scanner scanner) {
-		BoundsDouble lengthBounds = new BoundsDouble();
-		lengthBounds.set(0, Double.MAX_VALUE);
-		lengthBounds.exclude();
+		RangeDouble lengthRange = new RangeDouble();
+		lengthRange.set(0, Double.MAX_VALUE);
+		lengthRange.exclude();
 		
-		lengthRequester = new RequesterDouble(scanner, lengthBounds);
+		lengthRequester = new RequesterDouble(scanner, lengthRange);
 	}
 	
 	protected double requestNextLength(String label) {

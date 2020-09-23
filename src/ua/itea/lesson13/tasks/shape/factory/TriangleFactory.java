@@ -3,25 +3,25 @@ package ua.itea.lesson13.tasks.shape.factory;
 import java.util.Scanner;
 
 import ua.itea.lesson13.tasks.Angle;
-import ua.itea.lesson13.tasks.BoundsDouble;
-import ua.itea.lesson13.tasks.BoundsInteger;
+import ua.itea.lesson13.tasks.RangeDouble;
+import ua.itea.lesson13.tasks.RangeInteger;
 import ua.itea.lesson13.tasks.RequesterDouble;
 import ua.itea.lesson13.tasks.RequesterInteger;
 import ua.itea.lesson13.tasks.shape.Triangle;
 
 public class TriangleFactory extends RequestedShapeFactory {
-	private BoundsDouble angleBounds;
+	private RangeDouble angleRange;
 	private RequesterDouble angleRequester;
 	private RequesterInteger menuItemRequester;
 	
 	public TriangleFactory(Scanner scanner) {
 		super(scanner);
 		
-		angleBounds = new BoundsDouble();
-		angleBounds.exclude();
-		angleRequester = new RequesterDouble(scanner, angleBounds);
+		angleRange = new RangeDouble();
+		angleRange.exclude();
+		angleRequester = new RequesterDouble(scanner, angleRange);
 		
-		BoundsInteger menuItems = new BoundsInteger();
+		RangeInteger menuItems = new RangeInteger();
 		menuItems.set(1, 2);
 		menuItems.include();
 		menuItemRequester = new RequesterInteger(scanner, menuItems);
@@ -65,7 +65,7 @@ public class TriangleFactory extends RequestedShapeFactory {
 		sideA = requestNextLength("Side A");
 		sideB = requestNextLength("Side B");
 		
-		angleBounds.set(0, 180);
+		angleRange.set(0, 180);
 		angleAB.setDegree(angleRequester.next("Angle AB"));
 		
 		return new Triangle(sideA, sideB, angleAB, getRandomColor());
@@ -80,10 +80,10 @@ public class TriangleFactory extends RequestedShapeFactory {
 		
 		sideA = requestNextLength("Side A");
 		
-		angleBounds.set(0, 180);
+		angleRange.set(0, 180);
 		angleAB.setDegree(angleRequester.next("Angle AB"));
 
-		angleBounds.set(0, 180 - angleAB.getDegree());
+		angleRange.set(0, 180 - angleAB.getDegree());
 		angleAC.setDegree(angleRequester.next("Angle AC"));
 		
 		return new Triangle(sideA, angleAB, angleAC, getRandomColor());

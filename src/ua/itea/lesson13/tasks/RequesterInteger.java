@@ -6,19 +6,19 @@ import java.util.regex.Pattern;
 
 public class RequesterInteger {
 	private Scanner scanner;
-	private BoundsInteger bounds;
+	private RangeInteger range;
 	
-	public RequesterInteger(Scanner scanner, BoundsInteger bounds) {
+	public RequesterInteger(Scanner scanner, RangeInteger range) {
 		setScanner(scanner);
-		setBounds(bounds);
+		setRange(range);
 	}
 	
 	public void setScanner(Scanner scanner) {
 		this.scanner = scanner;
 	}
 	
-	public void setBounds(BoundsInteger bounds) {
-		this.bounds = bounds;
+	public void setRange(RangeInteger range) {
+		this.range = range;
 	}
 	
 	public int next(String label) {
@@ -46,12 +46,12 @@ public class RequesterInteger {
 	private int requestNext() {
 		int value = scanner.nextInt();
 		
-		if (!bounds.isWithin(value)) {
+		if (!range.isWithin(value)) {
 			throw new IllegalArgumentException("Invalid input: "
 					+ "value '" + value + "' is out of range "
-					+ (bounds.isIncludeMin() ? "[" : "(")
-					+ bounds.getMin() + "; " + bounds.getMax()
-					+ (bounds.isIncludeMax() ? "]" : ")"));
+					+ (range.isIncludeMin() ? "[" : "(")
+					+ range.getMin() + "; " + range.getMax()
+					+ (range.isIncludeMax() ? "]" : ")"));
 		}
 		
 		return value;

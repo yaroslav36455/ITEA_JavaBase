@@ -15,7 +15,7 @@ public class Main {
 		ShapeCollector triangleCollector = new TriangleCollector(scanner, maxShapes);
 
 		RequesterInteger menuItemRequester;
-		BoundsInteger menuItems = new BoundsInteger();
+		RangeInteger menuItems = new RangeInteger();
 		
 		menuItems.set(0, 3);
 		menuItems.include();
