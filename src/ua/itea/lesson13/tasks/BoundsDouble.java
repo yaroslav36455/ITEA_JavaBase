@@ -54,6 +54,22 @@ public class BoundsDouble {
 		isIncludeMax = false;
 	}
 	
+	public boolean isIncludeMin() {
+		return isIncludeMin;
+	}
+	
+	public boolean isIncludeMax() {
+		return isIncludeMax;
+	}
+	
+	public double getMin() {
+		return min;
+	}
+	
+	public double getMax() {
+		return max;
+	}
+	
 	private double round(double d) {
 		BigDecimal value = BigDecimal.valueOf(d);
 		BigDecimal zero = BigDecimal.valueOf(0);

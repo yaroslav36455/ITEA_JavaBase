@@ -1,5 +1,6 @@
 package ua.itea.lesson13.tasks;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -24,24 +25,35 @@ public class RequesterInteger {
 		Pattern patt = Pattern.compile("[^\\n]*\\n");
 		int value = 0;
 		
-		while (true) {
+		boolean isQuit = false;
+		while(!isQuit) {
 			System.out.print(label + ": ");
-			if (scanner.hasNextInt()) {
-				value = scanner.nextInt();
-				if (bounds.isWithin(value)) {
-					break;
-				}
+			try {
+				value = requestNext();
+				isQuit = true;
+			} catch(InputMismatchException e) {
+				System.out.println("Invalid input: integer required");
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
 			}
 			
 			scanner.skip(patt);
-			System.out.println(errorMessage());
 		}
 		
-		scanner.skip(patt);
 		return value;
 	}
 	
-	private String errorMessage() {
-		return "Invalid input, try again";
+	private int requestNext() {
+		int value = scanner.nextInt();
+		
+		if (!bounds.isWithin(value)) {
+			throw new IllegalArgumentException("Invalid input: "
+					+ "value '" + value + "' is out of range "
+					+ (bounds.isIncludeMin() ? "[" : "(")
+					+ bounds.getMin() + "; " + bounds.getMax()
+					+ (bounds.isIncludeMax() ? "]" : ")"));
+		}
+		
+		return value;
 	}
 }

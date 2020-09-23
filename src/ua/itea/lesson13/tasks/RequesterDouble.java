@@ -1,5 +1,6 @@
 package ua.itea.lesson13.tasks;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -22,26 +23,37 @@ public class RequesterDouble {
 	
 	public double next(String label) {
 		Pattern patt = Pattern.compile("[^\\n]*\\n");
-		double value = 0.0;
+		double value = 0;
 		
-		while (true) {
+		boolean isQuit = false;
+		while(!isQuit) {
 			System.out.print(label + ": ");
-			if (scanner.hasNextDouble()) {
-				value = scanner.nextDouble();
-				if (bounds.isWithin(value)) {
-					break;
-				}
+			try {
+				value = requestNext();
+				isQuit = true;
+			} catch(InputMismatchException e) {
+				System.out.println("Invalid input: double required");
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
 			}
 			
 			scanner.skip(patt);
-			System.out.println(errorMessage());
 		}
 		
-		scanner.skip(patt);
 		return value;
 	}
 	
-	private String errorMessage() {
-		return "Invalid input, try again";
+	private double requestNext() {
+		double value = scanner.nextDouble();
+		
+		if (!bounds.isWithin(value)) {
+			throw new IllegalArgumentException("Invalid input: "
+					+ "value '" + value + "' is out of range "
+					+ (bounds.isIncludeMin() ? "[" : "(")
+					+ bounds.getMin() + "; " + bounds.getMax()
+					+ (bounds.isIncludeMax() ? "]" : ")"));
+		}
+		
+		return value;
 	}
 }

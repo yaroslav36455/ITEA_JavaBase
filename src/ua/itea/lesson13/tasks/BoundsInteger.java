@@ -47,4 +47,20 @@ public class BoundsInteger {
 	public void excludeMax() {
 		isIncludeMax = false;
 	}
+	
+	public boolean isIncludeMin() {
+		return isIncludeMin;
+	}
+	
+	public boolean isIncludeMax() {
+		return isIncludeMax;
+	}
+	
+	public int getMin() {
+		return min;
+	}
+	
+	public int getMax() {
+		return max;
+	}
 }
