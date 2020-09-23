@@ -28,7 +28,7 @@ public class ShapeCollector extends ShapeContainer {
 	}
 	
 	protected Shape createClonnedShape() {
-		/* this method should never be called */
-		return new Shape("");
+		throw new RuntimeException("Unimplemented method 'createClonnedShape()'"
+				   				   + " in class ShapeCollector");
 	}
 }

@@ -11,7 +11,8 @@ public class ShapeFactory {
 	}
 	
 	public Shape create() {
-		return new Shape(getRandomColor());
+		throw new RuntimeException("Unimplemented method 'create()'"
+				   				   + " in class ShapeFactory");
 	}
 	
 	protected String getRandomColor() {

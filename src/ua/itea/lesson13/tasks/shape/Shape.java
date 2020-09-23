@@ -16,7 +16,8 @@ public class Shape {
 	}
 	
 	public String getName() {
-		return "Shape";
+		throw new RuntimeException("Unimplemented method 'getName()'"
+								   + " in class Shape");
 	}
 	
 	public double getPerimeter() {
