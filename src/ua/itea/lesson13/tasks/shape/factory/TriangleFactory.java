@@ -1,4 +1,4 @@
-package ua.itea.lesson13.tasks.figure.factory;
+package ua.itea.lesson13.tasks.shape.factory;
 
 import java.util.Scanner;
 
@@ -7,9 +7,9 @@ import ua.itea.lesson13.tasks.BoundsDouble;
 import ua.itea.lesson13.tasks.BoundsInteger;
 import ua.itea.lesson13.tasks.RequesterDouble;
 import ua.itea.lesson13.tasks.RequesterInteger;
-import ua.itea.lesson13.tasks.figure.Triangle;
+import ua.itea.lesson13.tasks.shape.Triangle;
 
-public class TriangleFactory extends RequestedFigureFactory {
+public class TriangleFactory extends RequestedShapeFactory {
 	private BoundsDouble angleBounds;
 	private RequesterDouble angleRequester;
 	private RequesterInteger menuItemRequester;

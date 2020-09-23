@@ -1,17 +1,18 @@
 package ua.itea.lesson13.tasks;
 
 import java.util.Scanner;
-import ua.itea.lesson13.tasks.figure.collector.*;
+
+import ua.itea.lesson13.tasks.shape.collector.*;
 
 public class Main {
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		int maxFigures = 3;
-		FigureCollector circleCollector = new CircleCollector(scanner, maxFigures);
-		FigureCollector rectangleCollector = new RectangleCollector(scanner, maxFigures);
-		FigureCollector triangleCollector = new TriangleCollector(scanner, maxFigures);
+		int maxShapes = 3;
+		ShapeCollector circleCollector = new CircleCollector(scanner, maxShapes);
+		ShapeCollector rectangleCollector = new RectangleCollector(scanner, maxShapes);
+		ShapeCollector triangleCollector = new TriangleCollector(scanner, maxShapes);
 
 		RequesterInteger menuItemRequester;
 		BoundsInteger menuItems = new BoundsInteger();
@@ -39,20 +40,20 @@ public class Main {
 			printFullness("; Triangles: ", triangleCollector);
 			System.out.println();
 			
-			switch (menuItemRequester.next("Select figure or exit")) {
+			switch (menuItemRequester.next("Select shape or exit")) {
 			case 1:
 				System.out.println("1-Circle");
-				circleCollector.addFigure();
+				circleCollector.addShape();
 				break;
 				
 			case 2:
 				System.out.println("2-Rectangle");
-				rectangleCollector.addFigure();
+				rectangleCollector.addShape();
 				break;	
 				
 			case 3:
 				System.out.println("3-Triangle");
-				triangleCollector.addFigure();
+				triangleCollector.addShape();
 				break;
 				
 			case 0:
@@ -73,15 +74,15 @@ public class Main {
 		System.out.println();
 		System.out.println("---------------------------------------------");
 		
-		/* common container for all figures */
-		System.out.println(new FigureContainer(circleCollector,
-											   rectangleCollector,
-											   triangleCollector));
+		/* common container for all shapes */
+		System.out.println(new ShapeContainer(circleCollector,
+											  rectangleCollector,
+											  triangleCollector));
 		
 		scanner.close();
 	}
 	
-	private static void printFullness(String label, FigureCollector collector) {
+	private static void printFullness(String label, ShapeCollector collector) {
 		System.out.print(label + collector.size() + "/" + collector.limit());
 	}
 

@@ -1,17 +1,17 @@
-package ua.itea.lesson13.tasks.figure.factory;
+package ua.itea.lesson13.tasks.shape.factory;
 
-import ua.itea.lesson13.tasks.figure.Figure;
 import ua.itea.lesson13.tasks.ColorRandomizer;
+import ua.itea.lesson13.tasks.shape.Shape;
 
-public class FigureFactory {
+public class ShapeFactory {
 	private ColorRandomizer colorRandomizer;
 	
-	public FigureFactory() {
+	public ShapeFactory() {
 		colorRandomizer = new ColorRandomizer();
 	}
 	
-	public Figure create() {
-		return new Figure(getRandomColor());
+	public Shape create() {
+		return new Shape(getRandomColor());
 	}
 	
 	protected String getRandomColor() {

@@ -1,6 +1,6 @@
-package ua.itea.lesson13.tasks.figure;
+package ua.itea.lesson13.tasks.shape;
 
-public class Rectangle extends Figure {
+public class Rectangle extends Shape {
 	
 	public Rectangle(double side, String color) {
 		super(color);

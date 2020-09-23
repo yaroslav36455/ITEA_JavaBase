@@ -1,6 +1,6 @@
-package ua.itea.lesson13.tasks.figure;
+package ua.itea.lesson13.tasks.shape;
 
-public class Circle extends Figure {
+public class Circle extends Shape {
 	
 	public Circle(double radius, String color) {
 		super(color);

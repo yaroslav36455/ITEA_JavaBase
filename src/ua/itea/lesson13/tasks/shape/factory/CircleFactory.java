@@ -1,9 +1,10 @@
-package ua.itea.lesson13.tasks.figure.factory;
+package ua.itea.lesson13.tasks.shape.factory;
 
 import java.util.Scanner;
-import ua.itea.lesson13.tasks.figure.Circle;
 
-public class CircleFactory extends RequestedFigureFactory {
+import ua.itea.lesson13.tasks.shape.Circle;
+
+public class CircleFactory extends RequestedShapeFactory {
 	
 	public CircleFactory(Scanner scanner) {
 		super(scanner);

@@ -1,16 +1,16 @@
-package ua.itea.lesson13.tasks.figure;
+package ua.itea.lesson13.tasks.shape;
 
-public class Figure {
+public class Shape {
 	private double perim;
 	private double area;
 	private String color;
 	
-	public Figure(String color) {
+	public Shape(String color) {
 		this.color = color;
 	}
 	
 	public String getName() {
-		return "Figure";
+		return "Shape";
 	}
 	
 	public double getPerimeter() {
@@ -35,7 +35,7 @@ public class Figure {
 
 	@Override
 	public String toString() {
-		return "Figure [getName()=" + getName() + ", getPerimeter()=" + getPerimeter()
+		return "Shape [getName()=" + getName() + ", getPerimeter()=" + getPerimeter()
 				+ ", getArea()=" + getArea() + ", getColor()=" + getColor() + "]";
 	}
 }

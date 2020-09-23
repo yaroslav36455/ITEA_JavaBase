@@ -1,8 +1,8 @@
-package ua.itea.lesson13.tasks.figure;
+package ua.itea.lesson13.tasks.shape;
 
 import ua.itea.lesson13.tasks.Angle;
 
-public class Triangle extends Figure {
+public class Triangle extends Shape {
 	
 	public Triangle(double sideA, double sideB, Angle angleAB, String color) {
 		super(color);

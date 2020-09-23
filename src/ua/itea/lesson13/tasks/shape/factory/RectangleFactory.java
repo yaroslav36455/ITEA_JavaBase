@@ -1,9 +1,10 @@
-package ua.itea.lesson13.tasks.figure.factory;
+package ua.itea.lesson13.tasks.shape.factory;
 
 import java.util.Scanner;
-import ua.itea.lesson13.tasks.figure.Rectangle;
 
-public class RectangleFactory extends RequestedFigureFactory {
+import ua.itea.lesson13.tasks.shape.Rectangle;
+
+public class RectangleFactory extends RequestedShapeFactory {
 	
 	public RectangleFactory(Scanner scanner) {
 		super(scanner);

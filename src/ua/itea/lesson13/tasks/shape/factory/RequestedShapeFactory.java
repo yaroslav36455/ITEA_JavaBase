@@ -1,14 +1,14 @@
-package ua.itea.lesson13.tasks.figure.factory;
+package ua.itea.lesson13.tasks.shape.factory;
 
 import java.util.Scanner;
 
 import ua.itea.lesson13.tasks.BoundsDouble;
 import ua.itea.lesson13.tasks.RequesterDouble;
 
-public class RequestedFigureFactory extends FigureFactory {
+public class RequestedShapeFactory extends ShapeFactory {
 	private RequesterDouble lengthRequester;
 	
-	public RequestedFigureFactory(Scanner scanner) {
+	public RequestedShapeFactory(Scanner scanner) {
 		BoundsDouble lengthBounds = new BoundsDouble();
 		lengthBounds.set(0, Double.MAX_VALUE);
 		lengthBounds.exclude();
