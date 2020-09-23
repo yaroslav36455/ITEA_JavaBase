@@ -2,6 +2,10 @@ package ua.itea.lesson13.tasks.shape;
 
 public class Rectangle extends Shape {
 	
+	public Rectangle(Rectangle other) {
+		super(other);
+	}
+	
 	public Rectangle(double side, String color) {
 		super(color);
 		reset(side);

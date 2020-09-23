@@ -2,6 +2,10 @@ package ua.itea.lesson13.tasks.shape;
 
 public class Circle extends Shape {
 	
+	public Circle(Circle other) {
+		super(other);
+	}
+	
 	public Circle(double radius, String color) {
 		super(color);
 		reset(radius);

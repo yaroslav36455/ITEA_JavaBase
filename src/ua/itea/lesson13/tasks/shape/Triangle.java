@@ -4,6 +4,10 @@ import ua.itea.lesson13.tasks.Angle;
 
 public class Triangle extends Shape {
 	
+	public Triangle(Triangle other) {
+		super(other);
+	}
+	
 	public Triangle(double sideA, double sideB, Angle angleAB, String color) {
 		super(color);
 		reset(sideA, sideB, angleAB);

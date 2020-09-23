@@ -5,6 +5,12 @@ public class Shape {
 	private double area;
 	private String color;
 	
+	public Shape(Shape other) {
+		this.perim = other.perim;
+		this.area = other.area;
+		this.color = other.color;
+	}
+	
 	public Shape(String color) {
 		this.color = color;
 	}

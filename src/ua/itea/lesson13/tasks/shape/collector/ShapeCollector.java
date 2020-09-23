@@ -1,15 +1,13 @@
 package ua.itea.lesson13.tasks.shape.collector;
 
 import ua.itea.lesson13.tasks.ShapeContainer;
-import ua.itea.lesson13.tasks.shape.factory.ShapeFactory;
+import ua.itea.lesson13.tasks.shape.Shape;
 
 public class ShapeCollector extends ShapeContainer {
-	private ShapeFactory factory;
 	private int limit;
 	
-	public ShapeCollector(ShapeFactory factory, int maxShapes) {
+	public ShapeCollector(int maxShapes) {
 		super(maxShapes);
-		this.factory = factory;
 		this.limit = maxShapes;
 	}
 	
@@ -23,9 +21,14 @@ public class ShapeCollector extends ShapeContainer {
 	
 	public void addShape() {
 		if (!isFull()) {
-			add(factory.create());
+			add(createClonnedShape());
 		} else {
 			System.out.println("These shapes are enough");
 		}
+	}
+	
+	protected Shape createClonnedShape() {
+		/* this method should never be called */
+		return new Shape("");
 	}
 }
