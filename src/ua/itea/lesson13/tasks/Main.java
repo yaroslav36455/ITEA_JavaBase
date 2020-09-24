@@ -40,30 +40,34 @@ public class Main {
 			printFullness("; Triangles: ", triangleCollector);
 			System.out.println();
 			
-			switch (menuItemRequester.next("Select shape or exit")) {
-			case 1:
-				System.out.println("1-Circle");
-				circleCollector.addShape();
-				break;
-				
-			case 2:
-				System.out.println("2-Rectangle");
-				rectangleCollector.addShape();
-				break;	
-				
-			case 3:
-				System.out.println("3-Triangle");
-				triangleCollector.addShape();
-				break;
-				
-			case 0:
-				System.out.println("0-Exit");
-				isQuit = true;
-				break;
+			try {
+				switch (menuItemRequester.next("Select shape or exit")) {
+				case 1:
+					System.out.println("1-Circle");
+					circleCollector.addShape();
+					break;
 
-			default:
-				/* never fall into */
-				break;
+				case 2:
+					System.out.println("2-Rectangle");
+					rectangleCollector.addShape();
+					break;
+
+				case 3:
+					System.out.println("3-Triangle");
+					triangleCollector.addShape();
+					break;
+
+				case 0:
+					System.out.println("0-Exit");
+					isQuit = true;
+					break;
+
+				default:
+					/* never fall into */
+					break;
+				}
+			} catch (CollectorOverflowException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 

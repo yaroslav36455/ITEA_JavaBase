@@ -1,5 +1,6 @@
 package ua.itea.lesson13.tasks.shape.collector;
 
+import ua.itea.lesson13.tasks.CollectorOverflowException;
 import ua.itea.lesson13.tasks.ShapeContainer;
 import ua.itea.lesson13.tasks.shape.Shape;
 
@@ -19,12 +20,12 @@ public class ShapeCollector extends ShapeContainer {
 		return !(size() < limit());
 	}
 	
-	public void addShape() {
-		if (!isFull()) {
-			add(createClonnedShape());
-		} else {
-			System.out.println("These shapes are enough");
+	public void addShape() throws CollectorOverflowException {
+		if (isFull()) {
+			throw new CollectorOverflowException("These shapes are enough");
 		}
+
+		add(createClonnedShape());
 	}
 	
 	protected Shape createClonnedShape() {
