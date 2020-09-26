@@ -1,0 +1,31 @@
+CREATE DATABASE ALKO;
+USE ALKO;
+
+CREATE TABLE category (cat_id TINYINT PRIMARY KEY AUTO_INCREMENT, cat_name VARCHAR(100));
+
+INSERT INTO category (cat_name) VALUES ('soft drinks');
+INSERT INTO category (cat_name) VALUES ('wine');
+INSERT INTO category (cat_name) VALUES ('beer');
+INSERT INTO category (cat_name) VALUES ('vodka');
+INSERT INTO category (cat_name) VALUES ('shot');
+
+CREATE TABLE drinks (d_id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT, d_name VARCHAR(255) NOT NULL, d_degree TINYINT UNSIGNED, d_category TINYINT, d_volume FLOAT(6,2), FOREIGN KEY (d_category) REFERENCES category(cat_id) ON DELETE RESTRICT);
+
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('water', 0, 1, 456.23);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('juice', 0, 1, 123.13);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('milk', 0, 1, 235.10);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Sauvignon Blanc', 17, 2, 43.10);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Semillon', 20, 2, 54.10);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Chardonnay', 18, 2, 0.00);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Verdelho', 17, 2, 8.50);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Witbier', 5, 3, 235.54);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Tripel', 8, 3, 12.30);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Münchener Hell', 5, 3, 34.24);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Doppelbock', 9, 3, 32.40);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Bière de Garde', 7, 3, 2.80);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Reyka', 39, 4, 6.45);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Smirnoff', 41, 4, 54.54);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Vermont Spirits', 39, 4, 34.11);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('B-52', 3, 5, 3.30);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Tequila Slammer', 18, 5, 45.15);
+INSERT INTO drinks (d_name, d_degree, d_category, d_volume) VALUES ('Irish Car Bomb', 31, 5, 0.30);
