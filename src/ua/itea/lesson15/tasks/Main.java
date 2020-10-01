@@ -10,9 +10,10 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		int maxShapes = 3;
-		ShapeCollector circleCollector = new CircleCollector(scanner, new ShapeContainer(), maxShapes);
-		ShapeCollector rectangleCollector = new RectangleCollector(scanner, new ShapeContainer(), maxShapes);
-		ShapeCollector triangleCollector = new TriangleCollector(scanner, new ShapeContainer(), maxShapes);
+		ShapeContainer container = new ShapeArray(maxShapes * 3);
+		ShapeCollector circleCollector = new CircleCollector(scanner, container, maxShapes);
+		ShapeCollector rectangleCollector = new RectangleCollector(scanner, container, maxShapes);
+		ShapeCollector triangleCollector = new TriangleCollector(scanner, container, maxShapes);
 
 		RequesterInteger menuItemRequester;
 		RangeInteger menuItems = new RangeInteger();
@@ -79,9 +80,7 @@ public class Main {
 		System.out.println("---------------------------------------------");
 		
 		/* common container for all shapes */
-		System.out.println(new ShapeContainer(circleCollector.getContainer(),
-											  rectangleCollector.getContainer(),
-											  triangleCollector.getContainer()));
+		System.out.println(container);
 		
 		scanner.close();
 	}

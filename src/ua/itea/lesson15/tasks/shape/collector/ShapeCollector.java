@@ -5,16 +5,18 @@ import ua.itea.lesson15.tasks.ShapeContainer;
 import ua.itea.lesson15.tasks.shape.Shape;
 
 public class ShapeCollector {
-	ShapeContainer container;
+	private ShapeContainer container;
 	private int limit;
+	private int size;
 	
 	public ShapeCollector(ShapeContainer container, int maxShapes) {
 		this.container = container;
 		this.limit = maxShapes;
+		size = 0;
 	}
 	
 	public int size() {
-		return container.size();
+		return size;
 	}
 	
 	public int limit() {
@@ -22,7 +24,7 @@ public class ShapeCollector {
 	}
 	
 	public boolean isFull() {
-		return !(container.size() < limit());
+		return !(size() < limit());
 	}
 	
 	public void addShape() throws CollectorOverflowException {
@@ -31,14 +33,11 @@ public class ShapeCollector {
 		}
 
 		container.add(createClonnedShape());
+		size++;
 	}
 	
 	protected Shape createClonnedShape() {
 		throw new RuntimeException("Unimplemented method 'createClonnedShape()'"
 				   				   + " in class ShapeCollector");
-	}
-	
-	public ShapeContainer getContainer() {
-		return container;
 	}
 }
