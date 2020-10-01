@@ -1,5 +1,7 @@
 package ua.itea.lesson15.tasks.shape.collector;
 
+import java.sql.SQLException;
+
 import ua.itea.lesson15.tasks.CollectorOverflowException;
 import ua.itea.lesson15.tasks.ShapeContainer;
 import ua.itea.lesson15.tasks.shape.Shape;
@@ -27,7 +29,7 @@ public class ShapeCollector {
 		return !(size() < limit());
 	}
 	
-	public void addShape() throws CollectorOverflowException {
+	public void addShape() throws CollectorOverflowException, SQLException {
 		if (isFull()) {
 			throw new CollectorOverflowException("These shapes are enough");
 		}

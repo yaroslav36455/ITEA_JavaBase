@@ -1,5 +1,6 @@
 package ua.itea.lesson15.tasks;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 
 import ua.itea.lesson15.tasks.shape.Shape;
@@ -23,7 +24,7 @@ public class ShapeArray extends ShapeContainer {
 	}
 	
 	public ShapeArray(ShapeContainer container,
-					  ShapeContainer ...containers) {
+					  ShapeContainer ...containers) throws SQLException {
 		shapes = new Shape[getCapacity(numberOfShapes(container, containers))];
 		addWithoutExpandingCapacity(container);
 		addWithoutExpandingCapacity(containers);
@@ -72,7 +73,7 @@ public class ShapeArray extends ShapeContainer {
 	}
 	
 	@Override
-	public void add(ShapeContainer container, ShapeContainer ...containers) {
+	public void add(ShapeContainer container, ShapeContainer ...containers) throws SQLException {
 		int count = numberOfShapes(container, containers);
 		
 		expandArrayCapacity(size() + count);
@@ -80,7 +81,7 @@ public class ShapeArray extends ShapeContainer {
 		addWithoutExpandingCapacity(containers);
 	}
 	
-	private int numberOfShapes(ShapeContainer container, ShapeContainer ...containers) {
+	private int numberOfShapes(ShapeContainer container, ShapeContainer ...containers) throws SQLException {
 		int count = container.size();
 		
 		for (ShapeContainer cont : containers) {
@@ -127,5 +128,32 @@ public class ShapeArray extends ShapeContainer {
 		}
 		
 		return capacity;
+	}
+	
+	@Override
+	public String toString() {
+		if(isEmpty()) {
+			return "No shapes";
+		} else {
+			StringBuffer result = new StringBuffer();
+			int counter = 1;
+			
+			result.append("┏━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━━━━┯━━━━━━┓\n");
+			result.append("┃№│Shape    │Perimeter│Area     │Color ┃\n");
+			result.append("┠─┼─────────┼─────────┼─────────┼──────┨\n");
+
+			for (Shape shape : getShapes()) {
+				result.append(String.format("┃%d│%-9s│%.3e│%.3e│%-6s┃%n",
+											counter++,
+								  	  		shape.getName(),
+								  	  		shape.getPerimeter(),
+								  	  		shape.getArea(),
+								  	  		shape.getColor()));
+			}
+
+			result.append("┗━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━━━━┷━━━━━━┛");
+
+			return result.toString();
+		}
 	}
 }
