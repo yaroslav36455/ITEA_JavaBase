@@ -79,9 +79,9 @@ public class Main {
 		System.out.println("---------------------------------------------");
 		
 		/* common container for all shapes */
-		System.out.println(new ShapeContainer(circleCollector,
-											  rectangleCollector,
-											  triangleCollector));
+		System.out.println(new ShapeContainer(circleCollector.getContainer(),
+											  rectangleCollector.getContainer(),
+											  triangleCollector.getContainer()));
 		
 		scanner.close();
 	}
