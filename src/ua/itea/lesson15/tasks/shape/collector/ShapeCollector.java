@@ -8,8 +8,8 @@ public class ShapeCollector {
 	ShapeContainer container;
 	private int limit;
 	
-	public ShapeCollector(int maxShapes) {
-		container = new ShapeContainer(maxShapes);
+	public ShapeCollector(ShapeContainer container, int maxShapes) {
+		this.container = container;
 		this.limit = maxShapes;
 	}
 	

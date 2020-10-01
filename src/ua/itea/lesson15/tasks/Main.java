@@ -10,9 +10,9 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 
 		int maxShapes = 3;
-		ShapeCollector circleCollector = new CircleCollector(scanner, maxShapes);
-		ShapeCollector rectangleCollector = new RectangleCollector(scanner, maxShapes);
-		ShapeCollector triangleCollector = new TriangleCollector(scanner, maxShapes);
+		ShapeCollector circleCollector = new CircleCollector(scanner, new ShapeContainer(), maxShapes);
+		ShapeCollector rectangleCollector = new RectangleCollector(scanner, new ShapeContainer(), maxShapes);
+		ShapeCollector triangleCollector = new TriangleCollector(scanner, new ShapeContainer(), maxShapes);
 
 		RequesterInteger menuItemRequester;
 		RangeInteger menuItems = new RangeInteger();
