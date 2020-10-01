@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 26, 2020 at 08:41 PM
+-- Generation Time: Oct 01, 2020 at 04:10 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `d_id` tinyint(4) NOT NULL,
+  `cat_id` tinyint(4) NOT NULL,
   `cat_name` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -36,7 +36,7 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`d_id`, `cat_name`) VALUES
+INSERT INTO `category` (`cat_id`, `cat_name`) VALUES
 (1, 'soft drinks'),
 (2, 'wine'),
 (3, 'beer'),
@@ -89,7 +89,7 @@ INSERT INTO `drinks` (`d_id`, `d_name`, `d_degree`, `d_category`, `d_volume`) VA
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`d_id`);
+  ADD PRIMARY KEY (`cat_id`);
 
 --
 -- Indexes for table `drinks`
@@ -106,7 +106,7 @@ ALTER TABLE `drinks`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `d_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cat_id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `drinks`
@@ -122,7 +122,7 @@ ALTER TABLE `drinks`
 -- Constraints for table `drinks`
 --
 ALTER TABLE `drinks`
-  ADD CONSTRAINT `drinks_ibfk_1` FOREIGN KEY (`d_category`) REFERENCES `category` (`d_id`);
+  ADD CONSTRAINT `drinks_ibfk_1` FOREIGN KEY (`d_category`) REFERENCES `category` (`cat_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
