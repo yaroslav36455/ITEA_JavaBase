@@ -24,12 +24,12 @@ public class Window extends JFrame {
 		bomb = new ImageIcon("img/bomb_on_grass_50x50.png");
 		firstAidKit = new ImageIcon("img/first_aid_kit_on_grass_50x50.png");
 	
-		int width = engine.getFieldWidth();
-		int height = engine.getFieldHeight();
+		int fieldWidth = engine.getFieldWidth();
+		int fieldHeight = engine.getFieldHeight();
 		
-		JPanel jPanel = new JPanel(new GridLayout(width, height, 1, 1));
+		JPanel jPanel = new JPanel(new GridLayout(fieldWidth, fieldHeight, 1, 1));
 		
-		jLabel = new JLabel[height][width];
+		jLabel = new JLabel[fieldHeight][fieldWidth];
 		for (int y = 0; y < jLabel.length; y++) {
 			for (int x = 0; x < jLabel[y].length; x++) {
 				jLabel[y][x] = new JLabel();
@@ -38,11 +38,17 @@ public class Window extends JFrame {
 		}
 		add(jPanel);
 		
-		setSize(((grass.getIconWidth() + 1) * width) + 1,
-			    ((grass.getIconHeight() + 1) * height) + 1 + 24);
+		int width = (grass.getIconWidth() + 1) * fieldWidth + 1;
+		int height = (grass.getIconHeight() + 1) * fieldHeight + 1;
 		
-		setResizable(false);
+		setSize(width, height);
 		setVisible(true);
+		setResizable(false);
+		
+		setSize(width, height + getInsets().top);
+		setVisible(true);
+		setResizable(false);
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setKeyListener();
