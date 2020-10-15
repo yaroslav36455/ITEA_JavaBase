@@ -103,6 +103,7 @@ public class OwnArrayList implements List<Dog> {
 			if (dogs[i].equals(o)) {
 				if (i < size - 1) {
 					System.arraycopy(dogs, i + 1, dogs, i, size - i);
+					dogs[size - 1] = null;
 				} else {
 					dogs[i] = null;
 				}
